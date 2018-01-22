@@ -5,13 +5,13 @@
 	<div class="container-fluid full-width-container inbox">
 		<!-- Title -->
 		<h1 class="section-title" id="services">
-			<span>Mensajes Recibidos</span>
+			<span>Mensajes Eliminados</span>
 		</h1><!-- End Title -->
 	
 		<!--breadcrum start-->
 		<ol class="breadcrumb text-left">
 		  <li><a href="/messages">Mensajes</a></li>
-		  <li class="active">Bandeja de Entrada</li>
+		  <li class="active">Papelera</li>
 		</ol><!--breadcrum end-->
 	
 		<div class="section" id="inbox"> 

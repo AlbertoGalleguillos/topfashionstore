@@ -2,7 +2,7 @@
 
 namespace App;
 
-class MessagesAttachment extends Model
+class MessagesRecipients extends Model
 {
     public function message() {
         return $this->belongsTo(Message::class);

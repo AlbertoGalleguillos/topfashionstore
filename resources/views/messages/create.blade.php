@@ -6,7 +6,6 @@
 
     <!--breadcrum start-->
     <ol class="breadcrumb text-left">
-        <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="/inbox">Mensajes</a></li>
         <li class="active">Crear nuevo mensaje</li>
     </ol><!--breadcrum end-->
@@ -18,9 +17,8 @@
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="hidden" name="from" value="Alberto Galleguillos">
-                        <input id="to" name="to" type="text" class="validate" required>
-                        <label for="to">Para </label>
+                        <input id="to_ids" name="to_ids" type="text" class="validate" required>
+                        <label for="to_ids">Para </label>
                     </div>
                 </div>
                 <div class="row">

@@ -41,7 +41,6 @@
 	<div class="container-fluid">
 		<div class="pmd-navbar-right-icon pull-right navigation">
 
-			
 			<!-- Notifications -->
             <div class="dropdown notification icons pmd-dropdown">
 			
@@ -122,8 +121,6 @@
 					</ul><!-- End notifications list -->
 
 				</div>
-				
-				
             </div> <!-- End notifications -->
 		</div>
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -149,11 +146,24 @@
 				<div class="media-left">
 					<img src="/images/user-icon.png" alt="New User">
 				</div>
-				<div class="media-body media-middle">Propeller Admin</div>
+				<div class="media-body media-middle">
+					@if (Auth()->check())
+						{{ Auth()->user()->name }}
+					@else 
+						Propeller Admin
+					@endif	
+				</div>
 				<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
 			</a>
-				<ul class="dropdown-menu">
-				<li><a href="login.html">Cerrar Sesión</a></li>
+			<ul class="dropdown-menu">
+				<li>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+						Cerrar Sesión
+                    </a>
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+						{{ csrf_field() }}
+					</form>
+				</li>
 			</ul>
 		</li><!-- End user info -->
         <li> 

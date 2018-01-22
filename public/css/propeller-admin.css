@@ -65,7 +65,7 @@
  .notification .notification-blank { padding:120px 16px; text-align:center; opacity:0.7;}
  nav .notification .notification-blank span.dic { display:block; font-size:58px; margin-bottom:10px; opacity:0.3;}
  .notification .dropdown-menu { padding:0; width:320px; position:relative;}
- .notification a.dropdown-toggle{ margin-top:25px;}
+ .notification a.dropdown-toggle{ margin-top:10px;}
  .notification a{ position:relative; overflow:visible;}
  .notification .list-group-item { background:#F9F9F9; line-height:15px; cursor:pointer; float:left; width:100%;}
  .notification .list-group-item { padding:0; border-top:1px solid #ebebeb; margin:0;}

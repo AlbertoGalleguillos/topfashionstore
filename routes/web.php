@@ -18,6 +18,12 @@ Route::get('/', function () {
 });
 
 Route::get('/messages/inbox', 'MessagesController@index');
+Route::get('/messages/sent', 'MessagesController@sent');
+Route::get('/messages/trash', 'MessagesController@trash');
 Route::get('/messages/create', 'MessagesController@create');
 Route::get('/messages/inbox/{message}', 'MessagesController@show');
 Route::post('/messages', 'MessagesController@store');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
