@@ -31,6 +31,8 @@
 <link rel="stylesheet" type="text/css" href="/css/propeller-admin.css">
 <!-- Styles Ends -->
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 
 <body>
@@ -178,6 +180,19 @@
                 <span class="media-body">Dashboard</span>
             </a> 
         </li>
+		<li> 
+            <a class="pmd-ripple-effect" href="/messages">
+                <i class="media-left media-middle">
+					<svg version="1.1" x="0px" y="0px" width="18px" height="12.479px" viewBox="288.64 363.118 18 12.479" enable-background="new 288.64 363.118 18 12.479" xml:space="preserve">
+						<g transform="translate(641.29613,1096.2351)">
+							<path fill="#C9C8C8" d="M-352.656-726.466v-5.828l4.484,4.484c2.467,2.466,4.499,4.484,4.516,4.484s2.049-2.018,4.516-4.484 l4.484-4.484v5.828v5.828h-9h-9V-726.466z M-347.854-728.929l-4.188-4.188h8.385h8.386l-4.188,4.188 c-2.304,2.303-4.192,4.188-4.198,4.188S-345.551-726.626-347.854-728.929z"/>
+						</g>
+					</svg>				
+				</i>
+                <span class="media-body">Mensajes</span>
+            </a> 
+        </li>
+		{{--
 		<li class="dropdown pmd-dropdown"> 
 			<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media" data-sidebar="true" href="javascript:void(0);">	
 				<i class="media-left media-middle">
@@ -196,6 +211,7 @@
 				<li><a href="/messages/trash">Papelera</a></li>
 			</ul>
 		</li>
+		--}}
 		<li> 
 			<a class="pmd-ripple-effect" href="/notifications">	
 				<i class="media-left media-middle">
@@ -257,12 +273,16 @@
 </footer>
 <!-- Footer Ends -->
 
+
 <!-- Scripts Starts -->  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 <!-- build:[src] assets/js/ -->
 <script src="/js/jquery-1.12.2.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/propeller.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+<script src="{{ asset('js/app.js') }}"></script>
+
 <!-- /build -->
 <script>
 	$(document).ready(function() {
@@ -279,6 +299,5 @@
 </script> 
 
 <!-- Scripts Ends -->
-
 </body>
 </html>

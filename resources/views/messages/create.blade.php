@@ -16,9 +16,8 @@
             <form class="col s12" method="POST" action="/messages" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="row">
-                    <div class="input-field col s12">
-                        <input id="to_ids" name="to_ids" type="text" class="validate" required>
-                        <label for="to_ids">Para </label>
+                    <div class="input-field col s12" id="app">
+                        <autocomplete-recipients></autocomplete-recipients>
                     </div>
                 </div>
                 <div class="row">

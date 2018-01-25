@@ -7,6 +7,7 @@ use App\Http\Requests\UploadRequest;
 use App\Message;
 use App\MessagesAttachment;
 use App\MessagesRecipients;
+use App\User;
 
 
 class MessagesController extends Controller
@@ -17,7 +18,7 @@ class MessagesController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
+    public function inbox(){
         $messages = \DB::table('messages_recipients')
             ->select('messages.*','users.name as from')
             ->join('messages', 'messages.id', 'messages_recipients.message_id')
@@ -28,6 +29,11 @@ class MessagesController extends Controller
 
         return view('messages.inbox', compact('messages'));
     }
+
+    public function index(){
+        return view('messages.index');
+    }
+
 
     public function show(Message $message){
         return view('messages.show', compact('message'));
@@ -40,7 +46,7 @@ class MessagesController extends Controller
     public function store(UploadRequest $request)
     {
         $this->validate(request(), [
-            'to_ids' => 'required',
+            'recipients' => 'required',
             'subject' => 'required',
             'body' => 'required'
         ]);
@@ -63,14 +69,17 @@ class MessagesController extends Controller
         }
 
         //Save Recipients
-        $recipients = request(['to_ids']);
-        $recipients = explode(',', $recipients['to_ids']);
+        $recipients = explode(',', request(['recipients'][0]));
+        //dd($recipients);
         if($recipients) {
             foreach ($recipients as $recipient) {
-                MessagesRecipients::create([
-                    'message_id' => $message->id,
-                    'to_id' => $recipient,
-                ]);
+                if($recipient) {
+                    $user = User::where('name', trim($recipient))->first();
+                    MessagesRecipients::create([
+                        'message_id' => $message->id,
+                        'to_id' => $user->id
+                    ]);
+                }
             }
         }
 

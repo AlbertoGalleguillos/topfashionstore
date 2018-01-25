@@ -17,12 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/messages/inbox', 'MessagesController@index');
+Route::get('/messages/inbox', 'MessagesController@inbox');
 Route::get('/messages/sent', 'MessagesController@sent');
 Route::get('/messages/trash', 'MessagesController@trash');
 Route::get('/messages/create', 'MessagesController@create');
 Route::get('/messages/inbox/{message}', 'MessagesController@show');
+Route::get('/messages', 'MessagesController@index');
+
 Route::post('/messages', 'MessagesController@store');
+
+Route::get('/autocomplete', function (){
+    return view('autocomplete');
+});
 
 Auth::routes();
 
