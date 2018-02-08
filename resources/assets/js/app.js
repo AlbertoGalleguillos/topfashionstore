@@ -17,8 +17,8 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('autocomplete-recipients',require('./components/AutocompleteRecipients.vue'));
-Vue.component('autocomplete',require('./components/Autocomplete.vue'));
+Vue.component('autocomplete-users',require('./components/AutocompleteUsers.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app'      
 });

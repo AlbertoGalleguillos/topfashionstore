@@ -8,7 +8,10 @@ use App\Message;
 use App\MessagesAttachment;
 use App\MessagesRecipients;
 use App\User;
+use App\Lists;
+use JavaScript;
 
+use Illuminate\Support\Facades\DB;
 
 class MessagesController extends Controller
 {
@@ -19,14 +22,33 @@ class MessagesController extends Controller
     }
 
     public function inbox(){
-        $messages = \DB::table('messages_recipients')
+
+        $listMessages = DB::table('messages')
+            ->select('messages.id', 'users.name as from', 'messages.subject', 'messages.body', 'messages.created_at')
+            ->join('users', 'messages.user_id', 'users.id')
+            ->join('messages_recipients', 'messages.id', 'messages_recipients.message_id')
+            ->join('lists_users', 'messages_recipients.to_id', 'lists_users.lists_id')
+            ->where([['type_id','L'], // L -> Lists
+                    ['lists_users.user_id', auth()->id()]]);
+
+        $messages = DB::table('messages')
+            ->select('messages.id', 'users.name as from', 'messages.subject', 'messages.body', 'messages.created_at')
+            ->join('users', 'users.id', 'messages.user_id')
+            ->join('messages_recipients', 'messages_recipients.message_id', 'messages.id')
+            ->where([['type_id','U'], // U -> Users
+                    ['messages_recipients.to_id', auth()->id()]])
+            ->union($listMessages)
+            ->latest()
+            ->get();
+/*
+        $messages = DB::table('messages_recipients')
             ->select('messages.*','users.name as from')
             ->join('messages', 'messages.id', 'messages_recipients.message_id')
             ->join('users', 'messages.user_id', 'users.id')
             ->where('messages_recipients.to_id',auth()->id())
             ->latest()
             ->get();
-
+*/
         return view('messages.inbox', compact('messages'));
     }
 
@@ -39,8 +61,14 @@ class MessagesController extends Controller
         return view('messages.show', compact('message'));
     }
 
-    public function create(){
-        return view('messages.create');
+    public function create($reply='', $replySubject=''){    
+        JavaScript::put(compact('reply'));
+        return view('messages.create', compact('replySubject'));
+    }
+
+    public function reply($reply='', $replySubject=''){
+        JavaScript::put(compact('reply'));
+        return view('messages.create', compact('replySubject'));
     }
 
     public function store(UploadRequest $request)
@@ -50,7 +78,8 @@ class MessagesController extends Controller
             'subject' => 'required',
             'body' => 'required'
         ]);
-        
+
+        //Save Message
         auth()->user()->send(
             $message = new Message(request(['subject','body']))
         );
@@ -70,14 +99,21 @@ class MessagesController extends Controller
 
         //Save Recipients
         $recipients = explode(',', request(['recipients'][0]));
-        //dd($recipients);
         if($recipients) {
             foreach ($recipients as $recipient) {
                 if($recipient) {
                     $user = User::where('name', trim($recipient))->first();
+                    if ($user) {
+                        $type_id = 'U'; // User
+                    } else {
+                        $type_id = 'L'; // List
+                        $user = Lists::where('name', trim($recipient))->first();
+                    }
+                    //dd($user);
                     MessagesRecipients::create([
                         'message_id' => $message->id,
-                        'to_id' => $user->id
+                        'to_id' => $user->id,
+                        'type_id' => $type_id
                     ]);
                 }
             }

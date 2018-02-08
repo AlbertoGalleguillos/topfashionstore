@@ -15,7 +15,7 @@
 		</ol><!--breadcrum end-->
 	
 		<div class="section" id="inbox"> 
-						
+
 				<!-- section content start-->
 				<div class="section-inner">
 					<div class="row">
@@ -30,11 +30,11 @@
 													
 													<div class="col l7 m7 avtar-detail">
 														<ul>
-															<li>De: {{ $message->from }}</li>
-															<li>Para: {{ $message->to }}</li>
+															<li>De: {{ $message->user->name }}</li>
+															<li>Para: {{ $message->getRecipients() }}</li>
 														</ul>
 													</div>
-													<span class="col l3 m3 offset-s10 ate-time right-align">{{ $message->created_at }}</span>		
+													<span class="col l3 m3 offset-s10 ate-time right-align">{{ $message->created_at->format('l j F Y, h:i:s A') }}</span>		
 
                                                     <br>
 															<div class="avtar-detail">
@@ -89,7 +89,17 @@
 	</div><!-- tab end -->
 	
 	<div class="container center-align">
-		<a class="waves-effect waves-light btn btn-reply blue lighten-1"><i class="material-icons left">reply</i>Contestar</a>
-		<a class="waves-effect waves-light btn btn-reply blue lighten-1"><i class="material-icons left">reply_all</i>Contestar a Todos</a>
+		<form method="GET" action="/messages/create/{{$message->getRecipients()}}/{{$message->subject}}">
+			{{ csrf_field() }}
+			<button class="waves-effect waves-light btn btn-reply blue" type="submit" formaction="/messages/create/{{$message->user->name}}/RE: {{$message->subject}}">
+				<i class="material-icons left">reply</i>Contestar
+			</button>
+		</from>
+		<form method="GET" action="/messages/create/{{$message->getRecipients()}}/{{$message->subject}}">
+			{{ csrf_field() }}
+			<button class="waves-effect waves-light btn btn-reply blue" type="submit" formaction="/messages/create/{{$message->user->name}}, {{$message->getRecipients()}}/RE: {{$message->subject}}">
+				<i class="material-icons left">reply_all</i>Contestar a Todos
+			</button>
+		</from>
 	</div>
 @endsection

@@ -47,7 +47,7 @@
 										<ul class="list-group pmd-z-depth pmd-list-twoline card-wp">
                                             @foreach ($messages as $message)
 												<li class="list-group-item unread">
-													<a href="/messages/inbox/{{ $message->id }}">
+													<a href="/messages/{{ $message->id }}">
 													<div class="media-left media-check">
 														<span class="checkbox">
 															<label class="pmd-checkbox checkbox-pmd-ripple-effect">
@@ -58,7 +58,7 @@
 													<div class="media-left user-details">
 														<span class="avatar-list-img40x40"><img alt="40x40" class="img-responsive" src="/images/avatar-icon-40x40.png" data-holder-rendered="true"></span>  
 														<div class="avatar-detail">
-															<h3 class="list-group-item-heading">{{ $message->from }}</h3>
+															<h3 class="list-group-item-heading">{{ $message->getRecipients() }}</h3>
 														</div>
 													</div>
 													<div class="media-body media-middle">

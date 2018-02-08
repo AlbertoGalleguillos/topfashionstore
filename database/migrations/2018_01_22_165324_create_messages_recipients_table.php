@@ -19,6 +19,7 @@ class CreateMessagesRecipientsTable extends Migration
             $table->foreign('message_id')->references('id')->on('messages');
             $table->integer('to_id')->unsigned();
             $table->foreign('to_id')->references('id')->on('users');
+            $table->char('type_id', 1)->comment('L -> List, U -> User');
             $table->timestamps();
         });
     }

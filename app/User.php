@@ -32,7 +32,6 @@ class User extends Authenticatable
     }
 
     public function send(Message $message) {
-        //dd($message);
         $this->messages()->save($message);
     }
 }

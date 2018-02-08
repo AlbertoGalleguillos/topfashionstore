@@ -21,10 +21,13 @@ Route::get('/messages/inbox', 'MessagesController@inbox');
 Route::get('/messages/sent', 'MessagesController@sent');
 Route::get('/messages/trash', 'MessagesController@trash');
 Route::get('/messages/create', 'MessagesController@create');
-Route::get('/messages/inbox/{message}', 'MessagesController@show');
+Route::get('/messages/create/{reply?}/{reply_subject?}', 'MessagesController@reply');
+Route::get('/messages/{message}', 'MessagesController@show');
 Route::get('/messages', 'MessagesController@index');
 
 Route::post('/messages', 'MessagesController@store');
+
+Route::get('/dashboard', 'DashboardController@index');
 
 Route::get('/autocomplete', function (){
     return view('autocomplete');
@@ -33,3 +36,11 @@ Route::get('/autocomplete', function (){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/lists', 'ListsController@index');
+Route::get('/lists/create', 'ListsController@create');
+Route::get('/lists/{list}/edit', 'ListsController@edit');
+
+Route::post('/lists', 'ListsController@store');
+Route::post('/lists/{list}/addUser', 'ListsController@addUser');
+Route::delete('/lists/removeUser/{listUser}', 'ListsController@destroy');

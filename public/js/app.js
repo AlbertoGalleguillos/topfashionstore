@@ -1098,7 +1098,7 @@ window.Vue = __webpack_require__(36);
 
 Vue.component('example-component', __webpack_require__(39));
 Vue.component('autocomplete-recipients', __webpack_require__(42));
-Vue.component('autocomplete', __webpack_require__(45));
+Vue.component('autocomplete-users', __webpack_require__(45));
 
 var app = new Vue({
   el: '#app'
@@ -43210,7 +43210,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.results = [];
-
             if (!this.recipients.includes(',')) {
                 this.query = this.recipients;
             } else {
@@ -43222,6 +43221,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this.results = response.data;
                 });
             }
+        }
+    },
+    mounted: function mounted() {
+        if (reply) {
+            this.recipients = reply;
         }
     }
 });
@@ -43318,7 +43322,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/Autocomplete.vue"
+Component.options.__file = "resources/assets/js/components/AutocompleteUsers.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -43327,9 +43331,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3a5dcd9f", Component.options)
+    hotAPI.createRecord("data-v-74e6644e", Component.options)
   } else {
-    hotAPI.reload("data-v-3a5dcd9f", Component.options)
+    hotAPI.reload("data-v-74e6644e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -43359,25 +43363,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      query: '',
-      results: []
-    };
-  },
+    data: function data() {
+        return {
+            query: '',
+            users: '',
+            results: [],
+            include_comma: false
+        };
+    },
 
-  methods: {
-    autoComplete: function autoComplete() {
-      var _this = this;
+    methods: {
+        add: function add(message) {
+            if (!this.users.includes(',')) {
+                this.users = message + ',';
+            } else {
+                this.users = this.users.substr(0, this.users.lastIndexOf(',') + 2) + message + ',';
+            }
+            this.results = [];
+        },
+        autoComplete: function autoComplete() {
+            var _this = this;
 
-      this.results = [];
-      if (this.query.length > 1) {
-        axios.get('/api/search_recipient', { params: { query: this.query } }).then(function (response) {
-          _this.results = response.data;
-        });
-      }
+            this.results = [];
+
+            if (!this.users.includes(',')) {
+                this.query = this.users;
+            } else {
+                this.query = this.users.split(',')[this.users.split(',').length - 1].trim();
+            }
+
+            if (this.query.length > 1) {
+                axios.get('/api/search_user', { params: { query: this.query } }).then(function (response) {
+                    _this.results = response.data;
+                });
+            }
+        }
     }
-  }
 });
 
 /***/ }),
@@ -43394,20 +43415,20 @@ var render = function() {
         {
           name: "model",
           rawName: "v-model",
-          value: _vm.query,
-          expression: "query"
+          value: _vm.users,
+          expression: "users"
         }
       ],
       staticClass: "form-control",
-      attrs: { type: "text", placeholder: "Para" },
-      domProps: { value: _vm.query },
+      attrs: { type: "text", placeholder: "Usuario(s)", name: "users" },
+      domProps: { value: _vm.users },
       on: {
         keyup: _vm.autoComplete,
         input: function($event) {
           if ($event.target.composing) {
             return
           }
-          _vm.query = $event.target.value
+          _vm.users = $event.target.value
         }
       }
     }),
@@ -43418,9 +43439,18 @@ var render = function() {
             "ul",
             { staticClass: "list-group" },
             _vm._l(_vm.results, function(result) {
-              return _c("li", { staticClass: "list-group-item" }, [
-                _vm._v("\n    " + _vm._s(result.name) + "\n   ")
-              ])
+              return _c(
+                "li",
+                {
+                  staticClass: "list-group-item",
+                  on: {
+                    click: function($event) {
+                      _vm.add(result.name)
+                    }
+                  }
+                },
+                [_vm._v("\n    " + _vm._s(result.name) + "\n   ")]
+              )
             })
           )
         ])
@@ -43433,7 +43463,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3a5dcd9f", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-74e6644e", module.exports)
   }
 }
 

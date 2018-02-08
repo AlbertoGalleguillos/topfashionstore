@@ -47,7 +47,7 @@
 										<ul class="list-group pmd-z-depth pmd-list-twoline card-wp">
                                             @foreach ($messages as $message)
 												<li class="list-group-item unread">
-													<a href="/messages/inbox/{{ $message->id }}">
+													<a href="/messages/{{ $message->id }}">
 													<div class="media-left media-check">
 														<span class="checkbox">
 															<label class="pmd-checkbox checkbox-pmd-ripple-effect">

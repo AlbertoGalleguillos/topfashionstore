@@ -34,7 +34,6 @@
         },
         autoComplete(){
             this.results = [];
-
             if (!this.recipients.includes(',')) {
                 this.query = this.recipients;
             } else {
@@ -47,6 +46,11 @@
                 });
             }
         }
-    }
+    },
+    mounted() {
+            if (reply) {
+                this.recipients = reply;
+            }
+        }
 }
 </script>

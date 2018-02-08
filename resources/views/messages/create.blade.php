@@ -32,7 +32,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                    <input id="subject" name="subject" type="text" class="validate" required>
+                    <input id="subject" name="subject" type="text" class="validate" value="{{$replySubject}}" required>
                     <label for="subject">Asunto</label>
                     </div>
                 </div>
@@ -63,6 +63,7 @@
     </div>
 
     @include('layouts.errors')
+    @include('footer')
 
 </div>
 @endsection

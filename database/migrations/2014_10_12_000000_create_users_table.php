@@ -21,6 +21,13 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('users')->insert([
+            ['name' => 'Alberto Galleguillos', 'email' => 'agalleguillos.tfs@gmail.com', 'password' => bcrypt('segasi1205')],
+            ['name' => 'Adán Galaz', 'email' => 'agalaz.tfs@gmail.com', 'password' => bcrypt('segasi1205')],
+            ['name' => 'Bryan Peña', 'email' => 'bpena.tfs@gmail.com', 'password' => bcrypt('segasi1205')],
+            ['name' => 'Lucio Ugolini', 'email' => 'lucio.tfs@gmail.com', 'password' => bcrypt('segasi1205')]
+        ]);
     }
 
     /**
