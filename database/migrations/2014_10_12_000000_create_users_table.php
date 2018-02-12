@@ -15,18 +15,19 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('uid')->unique();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('photo_url')->default('user-icon.png');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
 
         DB::table('users')->insert([
-            ['name' => 'Alberto Galleguillos', 'email' => 'agalleguillos.tfs@gmail.com', 'password' => bcrypt('segasi1205')],
-            ['name' => 'Adán Galaz', 'email' => 'agalaz.tfs@gmail.com', 'password' => bcrypt('segasi1205')],
-            ['name' => 'Bryan Peña', 'email' => 'bpena.tfs@gmail.com', 'password' => bcrypt('segasi1205')],
-            ['name' => 'Lucio Ugolini', 'email' => 'lucio.tfs@gmail.com', 'password' => bcrypt('segasi1205')]
+            ['name' => 'Alberto Galleguillos', 'uid' => 'agalleguillos', 'password' => bcrypt('segasi1205')],
+            ['name' => 'Adán Galaz', 'uid' => 'agalaz', 'password' => bcrypt('segasi1205')],
+            ['name' => 'Bryan Peña', 'uid' => 'bpena', 'password' => bcrypt('segasi1205')],
+            ['name' => 'Lucio Ugolini', 'uid' => 'lucio', 'password' => bcrypt('segasi1205')]
         ]);
     }
 

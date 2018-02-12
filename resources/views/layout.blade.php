@@ -47,7 +47,8 @@
             <div class="dropdown notification icons pmd-dropdown">
 			
 				<a href="javascript:void(0)" title="Notification" class="dropdown-toggle pmd-ripple-effect"  data-toggle="dropdown" role="button" aria-expanded="true">
-					<div data-badge="3" class="material-icons md-light pmd-sm pmd-badge  pmd-badge-overlap">notifications_none</div>
+					{{--<div data-badge="3" class="material-icons md-light pmd-sm pmd-badge  pmd-badge-overlap">notifications_none</div>--}}
+					<div class="material-icons md-light pmd-sm pmd-badge  pmd-badge-overlap">notifications_none</div>
 				</a>
 			
 				<div class="dropdown-menu dropdown-menu-right pmd-card pmd-card-default pmd-z-depth" role="menu">
@@ -144,7 +145,7 @@
 		
 		<!-- User info -->
 		<li class="dropdown pmd-dropdown pmd-user-info visible-xs visible-md visible-sm visible-lg">
-			<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media" data-sidebar="true" aria-expandedhref="javascript:void(0);">
+			<a class="pmd-ripple-effect" href="/profile">
 				<div class="media-left">
 					<img src="/images/user-icon.png" alt="New User">
 				</div>
@@ -157,16 +158,7 @@
 				</div>
 				<div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
 			</a>
-			<ul class="dropdown-menu">
-				<li>
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-						Cerrar Sesión
-                    </a>
-					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-						{{ csrf_field() }}
-					</form>
-				</li>
-			</ul>
+
 		</li><!-- End user info -->
         <li> 
             <a class="pmd-ripple-effect" href="/dashboard">	

@@ -6,7 +6,7 @@
 
     <h1>Dashboard</h1>
     
-    <h1>Ventas: ${{ number_format($daySales->total) }} en {{ $daySales->quantity }} prendas<h1>
+    <h1>Ventas: ${{ number_format($daySales->total) }} en {{ number_format($daySales->quantity) }} prendas<h1>
 
     <div class="row">
       <div class="col s12 l4">
