@@ -44,3 +44,15 @@ Route::get('/lists/{list}/edit', 'ListsController@edit');
 Route::post('/lists', 'ListsController@store');
 Route::post('/lists/{list}/addUser', 'ListsController@addUser');
 Route::delete('/lists/removeUser/{listUser}', 'ListsController@destroy');
+
+Route::get('/admin', function () {
+    return view('admin');
+});
+
+Route::get('/meeting', function () {
+    return view('meeting');
+});
+
+Route::get('/features', function () {
+    return view('features');
+});

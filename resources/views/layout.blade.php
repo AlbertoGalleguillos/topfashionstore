@@ -47,7 +47,8 @@
             <div class="dropdown notification icons pmd-dropdown">
 			
 				<a href="javascript:void(0)" title="Notification" class="dropdown-toggle pmd-ripple-effect"  data-toggle="dropdown" role="button" aria-expanded="true">
-					<div data-badge="3" class="material-icons md-light pmd-sm pmd-badge  pmd-badge-overlap">notifications_none</div>
+					{{--<div data-badge="3" class="material-icons md-light pmd-sm pmd-badge  pmd-badge-overlap">notifications_none</div>--}}
+					<div class="material-icons md-light pmd-sm pmd-badge  pmd-badge-overlap">notifications_none</div>
 				</a>
 			
 				<div class="dropdown-menu dropdown-menu-right pmd-card pmd-card-default pmd-z-depth" role="menu">
