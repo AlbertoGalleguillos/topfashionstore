@@ -57,6 +57,10 @@ Route::get('/meeting', function (){
     return view('meeting');
 });
 
+Route::get('/features', function (){
+    return view('features');
+});
+
 Route::get('/profile', function (){
     return view('profile');
 });

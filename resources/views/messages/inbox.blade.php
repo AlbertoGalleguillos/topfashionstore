@@ -63,7 +63,7 @@
 													</div>
 													<div class="media-body media-middle">
 														<div class="message-detail">
-															<h3 class="list-group-item-heading">{{ $message->subject }}&nbsp;<span> - {{ $message->body }}</span></h3>
+															<h3 class="list-group-item-heading">{!! $message->subject !!}&nbsp;<span> - {{ $message->body }}</span></h3>
 														</div>
 													</div>
 													<div class="media-right media-top">

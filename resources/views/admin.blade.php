@@ -33,7 +33,7 @@
         </div>
 
         <div class="col s12 m6">
-            <a href="/releases">
+            <a href="/features">
                 <div class="center promo card-panel"><br>
                     <i class="material-icons">new_releases</i>
                     <p>Pendientes</p>
