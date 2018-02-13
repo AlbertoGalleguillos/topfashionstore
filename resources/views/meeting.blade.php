@@ -24,6 +24,7 @@
                 <li>Bryan Peña</li>
                 <li>Guimel Carrasco</li>
                 <li>Alberto Galleguillos</li>
+                <li>Bárbara Vergara</li>
             </div>
         </div>
         <hr>
@@ -151,6 +152,7 @@
             <div class="col s6">
                 <li>Realizar los avances acordados del nuevo sistema interno para la próxima reunión</li>
                 <li>Realizar los siguientes cambios en el sistema de inventario: Separar interfaces, crear visualizador de item pickeado, modificación para trabajar con los códigos nuevos.</li>
+                <li>Implementar sistema de inventario en 25 locales, abarcando Santiago y V Región completa.</li>
             </div>
         </div>
 
