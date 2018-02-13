@@ -17,8 +17,6 @@ class CreateMessagesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('cc')->nullable();
-            $table->string('bcc')->nullable();
             $table->string('subject');
             $table->text('body');
             $table->boolean('read')->default(false);

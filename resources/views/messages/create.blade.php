@@ -21,16 +21,6 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s6">
-                    <input id="cc" name="cc" type="text" class="validate">
-                    <label for="cc">Con Copia </label>
-                    </div>
-                    <div class="input-field col s6">
-                    <input id="bcc" name="bcc" type="text" class="validate">
-                    <label for="bcc">Con Copia Oculta </label>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="input-field col s12">
                     <input id="subject" name="subject" type="text" class="validate" value="{{$replySubject}}" required>
                     <label for="subject">Asunto</label>
