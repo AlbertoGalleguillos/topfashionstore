@@ -173,7 +173,7 @@
             </a> 
         </li>
 		<li> 
-            <a class="pmd-ripple-effect" href="/messages">
+            <a class="pmd-ripple-effect" href="/messages/inbox">
                 <i class="media-left media-middle">
 					<svg version="1.1" x="0px" y="0px" width="18px" height="12.479px" viewBox="288.64 363.118 18 12.479" enable-background="new 288.64 363.118 18 12.479" xml:space="preserve">
 						<g transform="translate(641.29613,1096.2351)">

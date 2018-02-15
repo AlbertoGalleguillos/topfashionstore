@@ -30,8 +30,8 @@ class DashboardController extends Controller
                 ->title($zone->name)
                 ->dimensions(0, 350) // Width x Height
                 ->elementLabel('Prendas')
-                ->template("material")
-                // ->colors(['#2196F3', '#F44336', '#FFC107'])
+                //->template("material")
+                ->colors(['#F44336'])
                 ->values($zone->getSales($today)->pluck('quantity'))    
                 ->labels($zone->getSales($today)->pluck('name'));
             array_push($charts, $chart);

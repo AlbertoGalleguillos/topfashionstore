@@ -56,7 +56,7 @@
                                             <li class="list-group-item unread">
 												<div class="media-body media-middle">
 													<div class="message-detail">
-														<h3 class="list-group-item-heading"><span>{!! $message->body !!}</span></h3>
+														<h3 class="list-group-item-heading"><span>{!! nl2br($message->body) !!}</span></h3>
 													</div>
 												</div>
 											</li>

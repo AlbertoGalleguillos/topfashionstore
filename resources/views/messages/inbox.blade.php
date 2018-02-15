@@ -2,18 +2,27 @@
 
 @section('content')
 	<!--tab start-->
-	<div class="container-fluid full-width-container inbox">
+	<div class="container-fluid  inbox">
 		<!-- Title -->
 		<h1 class="section-title" id="services">
 			<span>Mensajes Recibidos</span>
 		</h1><!-- End Title -->
 	
-		<!--breadcrum start-->
-		<ol class="breadcrumb text-left">
-		  <li><a href="/messages">Mensajes</a></li>
-		  <li class="active">Bandeja de Entrada</li>
-		</ol><!--breadcrum end-->
-	
+		<div class="container-fluid row">
+			<div class="col s6">
+				<!--breadcrum start-->
+				<ol class="breadcrumb text-left">
+				<li><a href="/messages">Mensajes</a></li>
+				<li class="active">Bandeja de Entrada</li>
+				</ol><!--breadcrum end-->
+			</div>
+			<div class="col s6 right-align">
+				<a class="btn waves-effect waves-light blue lighten-1" href="/messages/sent">Enviados</a>
+				&nbsp;
+				<a class="btn waves-effect waves-light blue lighten-1" href="/messages/trash">Papelera</a>
+			</div>
+		</div>
+
 		<div class="section" id="inbox"> 
 						
 				<!-- section content start-->

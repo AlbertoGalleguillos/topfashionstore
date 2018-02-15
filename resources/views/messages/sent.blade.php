@@ -8,12 +8,21 @@
 			<span>Mensajes Enviados</span>
 		</h1><!-- End Title -->
 	
-		<!--breadcrum start-->
-		<ol class="breadcrumb text-left">
-		  <li><a href="/messages">Mensajes</a></li>
-		  <li class="active">Bandeja de Salida</li>
-		</ol><!--breadcrum end-->
-	
+		<div class="container-fluid row">
+			<div class="col s6">
+				<!--breadcrum start-->
+				<ol class="breadcrumb text-left">
+				<li><a href="/messages">Mensajes</a></li>
+				<li class="active">Bandeja de Salida</li>
+				</ol><!--breadcrum end-->
+			</div>
+			<div class="col s6 right-align">
+				<a class="btn waves-effect waves-light blue lighten-1" href="/messages/inbox">Recibidos</a>
+				&nbsp;
+				<a class="btn waves-effect waves-light blue lighten-1" href="/messages/trash">Papelera</a>
+			</div>
+		</div>
+
 		<div class="section" id="inbox"> 
 						
 				<!-- section content start-->
@@ -63,7 +72,7 @@
 													</div>
 													<div class="media-body media-middle">
 														<div class="message-detail">
-															<h3 class="list-group-item-heading">{{ $message->subject }}&nbsp;<span> - {{ $message->body }}</span></h3>
+															<h3 class="list-group-item-heading">{{ $message->subject }}&nbsp;<span> - {!! $message->body !!} </span></h3>
 														</div>
 													</div>
 													<div class="media-right media-top">

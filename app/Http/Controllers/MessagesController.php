@@ -23,6 +23,7 @@ class MessagesController extends Controller
 
     public function inbox(){
 
+        //TODO: Refactor to Message method: $messages->getInbox
         $listMessages = DB::table('messages')
             ->select('messages.id', 'users.name as from', 'messages.subject', 'messages.body', 'messages.created_at')
             ->join('users', 'messages.user_id', 'users.id')
@@ -40,15 +41,7 @@ class MessagesController extends Controller
             ->union($listMessages)
             ->latest()
             ->get();
-/*
-        $messages = DB::table('messages_recipients')
-            ->select('messages.*','users.name as from')
-            ->join('messages', 'messages.id', 'messages_recipients.message_id')
-            ->join('users', 'messages.user_id', 'users.id')
-            ->where('messages_recipients.to_id',auth()->id())
-            ->latest()
-            ->get();
-*/
+
         return view('messages.inbox', compact('messages'));
     }
 
@@ -109,7 +102,6 @@ class MessagesController extends Controller
                         $type_id = 'L'; // List
                         $user = Lists::where('name', trim($recipient))->first();
                     }
-                    //dd($user);
                     MessagesRecipients::create([
                         'message_id' => $message->id,
                         'to_id' => $user->id,
