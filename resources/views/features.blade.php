@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.master')
 
 @section('content')
 <br>
@@ -17,28 +17,28 @@
 					<tbody>
 						<tr>
 							<td class="center">0</td>
-							<td>Migración de Sistema a Servidor (Instalación, Migración y Certificados)</td>
+							<td><s>Migración de Sistema a Servidor (Instalación, Migración y Certificados)</s></td>
 							<td class="center">2-3</td>
 						</tr>    
 						<tr>
 							<td class="center">1</td>
-							<td>Botón Eliminar Mensajes</td>
+							<td><s>Botón Eliminar Mensajes</s></td>
 							<td class="center">1</td>
 							</tr>
 						<tr>
 							<td class="center">2</td>
-							<td>Botón Búsqueda de Mensajes</td>
+							<td>Botón Búsqueda de Mensajes * No todavía</td>
 							<td class="center">2</td>
 						</tr>
 						<tr>
-							<td class="center"d>3</td>
-							<td>Módulo de Notificaciones</td>
-							<td class="center">2-5</td>
-						</tr>
-						<tr>
-							<td class="center">4</td>
+							<td class="center">3</td>
 							<td>Módulo de Requerimientos (Tickets)</td>
 							<td class="center">5-10</td>
+						</tr>
+						<tr>
+							<td class="center"d>4</td>
+							<td>Módulo de Notificaciones</td>
+							<td class="center">2-5</td>
 						</tr>
 						<tr>
 							<td class="center">5</td>
@@ -68,6 +68,16 @@
 						<tr>
 							<td class="center">10</td>
 							<td>Módulo de Minutas de Reuniones</td>
+							<td class="center">2</td>
+						</tr>          
+						<tr>
+							<td class="center">11</td>
+							<td>Migración Ventas Históricas</td>
+							<td class="center">2</td>
+						</tr>          
+						<tr>
+							<td class="center">12</td>
+							<td>Módulo Metas de Ventas</td>
 							<td class="center">2</td>
 						</tr>          
 					</tbody>

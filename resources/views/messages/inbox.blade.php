@@ -1,30 +1,34 @@
-@extends('layout')
+@extends('layouts.master')
 
 @section('content')
 	<!--tab start-->
-	<div class="container-fluid  inbox">
+	<div class="container-fluid inbox">
 		<!-- Title -->
-		<h1 class="section-title" id="services">
-			<span>Mensajes Recibidos</span>
-		</h1><!-- End Title -->
-	
-		<div class="container-fluid row">
-			<div class="col s6">
-				<!--breadcrum start-->
-				<ol class="breadcrumb text-left">
+		<div class="row">
+			<div class="col s8">
+				<h1 class="section-title" id="services">
+					<span>Mensajes Recibidos</span>
+				</h1><!-- End Title -->
+			</div>
+			<div class="col s4 right-align">
+				<a class="btn btn-top waves-effect waves-light blue lighten-1" href="/messages/sent">Enviados</a>&nbsp;
+				<a class="btn btn-top waves-effect waves-light blue lighten-1" href="/messages/trash">Papelera</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+			<!--breadcrum start-->
+			<ol class="breadcrumb text-left">
 				<li><a href="/messages">Mensajes</a></li>
 				<li class="active">Bandeja de Entrada</li>
-				</ol><!--breadcrum end-->
-			</div>
-			<div class="col s6 right-align">
-				<a class="btn waves-effect waves-light blue lighten-1" href="/messages/sent">Enviados</a>
-				&nbsp;
-				<a class="btn waves-effect waves-light blue lighten-1" href="/messages/trash">Papelera</a>
+			</ol><!--breadcrum end-->
 			</div>
 		</div>
 
 		<div class="section" id="inbox"> 
-						
+			<form action="/messages/delete" method="POST">
+				{{ method_field('delete') }}
+				{{ csrf_field() }}
 				<!-- section content start-->
 				<div class="section-inner">
 					<div class="row">
@@ -32,14 +36,9 @@
                         	<div class="mailbox">
                     	  		<div class="action-bar row">
                         			<div class="col-lg-6 col-xs-4">
-										<span class="checkbox pull-left">
-											<label class="pmd-checkbox checkbox-pmd-ripple-effect">
-												<input type="checkbox" value="">
-											</label>
-										</span>
-                                		<a href="javascript:void(0);" class="btn-link pmd-ripple-effect btn-delete pull-left">
+                                		<button class="btn-link pmd-ripple-effect btn-delete pull-left tooltipped" type="Submit" data-position="right" data-delay="100" data-tooltip="Eliminar Mensajes Seleccionados">
 											<i class="material-icons md-dark pmd-sm">delete</i>
-										</a>
+										</button>
                             		</div>
 									<div class="col-lg-6 col-xs-8">
 										<div class="form-group icon-right">
@@ -60,7 +59,7 @@
 													<div class="media-left media-check">
 														<span class="checkbox">
 															<label class="pmd-checkbox checkbox-pmd-ripple-effect">
-																<input type="checkbox" value="">
+																<input type="checkbox" name="{{ $message->id }}">
 															</label>
 														</span>
 													</div>
@@ -90,6 +89,7 @@
 					</div>
 				</div> <!-- section content end -->  
 			</div>
+		</form>
 	</div><!-- tab end -->
 	
 	<div class="fixed-action-btn">

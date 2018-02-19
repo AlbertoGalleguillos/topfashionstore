@@ -20,6 +20,31 @@ class Message extends Model
         return $this->hasMany(MessagesRecipients::class);
     }
 
+    public static function getInbox(){
+        //TODO: Refactor to Message method: $messages->getInbox
+        $listMessages = DB::table('messages')
+            ->select('messages.id', 'users.name as from', 'messages.subject', 'messages.body', 'messages.created_at')
+            ->join('users', 'messages.user_id', 'users.id')
+            ->join('messages_recipients', 'messages.id', 'messages_recipients.message_id')
+            ->join('lists_users', 'messages_recipients.to_id', 'lists_users.lists_id')
+            ->where([['type_id','L'], // L -> Lists
+                    ['deleted',false],
+                    ['lists_users.user_id', auth()->id()]]);
+
+        $messages = DB::table('messages')
+            ->select('messages.id', 'users.name as from', 'messages.subject', 'messages.body', 'messages.created_at')
+            ->join('users', 'users.id', 'messages.user_id')
+            ->join('messages_recipients', 'messages_recipients.message_id', 'messages.id')
+            ->where([['type_id','U'], // U -> Users
+                    ['deleted',false],
+                    ['messages_recipients.to_id', auth()->id()]])
+            ->union($listMessages)
+            ->latest()
+            ->get();
+
+        return $messages;
+    }
+
     public function getRecipients() {
         $sw = true;
         foreach ($this->recipients as $recipient){
@@ -36,5 +61,10 @@ class Message extends Model
             }
         }
         return $recipient_names;
+    }
+
+    public function toTrash(){
+        $this->deleted = true;
+        return $this->save();
     }
 }

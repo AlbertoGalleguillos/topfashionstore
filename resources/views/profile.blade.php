@@ -1,5 +1,5 @@
 
-@extends('layout')
+@extends('layouts.master')
 
 @section('content')
 	<!--tab start-->
@@ -62,19 +62,19 @@
                                     <div class="form-group pmd-textfield">
 										<label class="control-label col-sm-3" for="u_password">Contraseña Actual</label>
 										<div class="col-sm-9">
-											<input type="password" class="form-control empty" id="inputEmail">
+											<input type="password" id="inputEmail">
 										</div>
 									</div>
 									<div class="form-group pmd-textfield">
 										<label class="control-label col-sm-3" for="u_password">Nueva Contraseña</label>
 										<div class="col-sm-9">
-											<input type="password" class="form-control empty" id="inputEmail">
+											<input type="password" id="inputEmail">
 										</div>
 									</div>
 									<div class="form-group pmd-textfield">
 										<label class="control-label col-sm-3" for="u_password">Repetir Contraseña</label>
 										<div class="col-sm-9">
-											<input type="password" class="form-control empty" id="inputEmail" value="">
+											<input type="password" id="inputEmail">
 											<span class="help-text">* Su contraseña debe contener al menos 6 caracteres</span>
 										</div>
 									</div>

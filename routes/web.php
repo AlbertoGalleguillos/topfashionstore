@@ -26,6 +26,7 @@ Route::get('/messages/{message}', 'MessagesController@show');
 Route::get('/messages', 'MessagesController@index');
 
 Route::post('/messages', 'MessagesController@store');
+Route::delete('/messages/delete', 'MessagesController@delete');
 
 Route::get('/dashboard', 'DashboardController@index');
 

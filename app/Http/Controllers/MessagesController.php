@@ -22,26 +22,7 @@ class MessagesController extends Controller
     }
 
     public function inbox(){
-
-        //TODO: Refactor to Message method: $messages->getInbox
-        $listMessages = DB::table('messages')
-            ->select('messages.id', 'users.name as from', 'messages.subject', 'messages.body', 'messages.created_at')
-            ->join('users', 'messages.user_id', 'users.id')
-            ->join('messages_recipients', 'messages.id', 'messages_recipients.message_id')
-            ->join('lists_users', 'messages_recipients.to_id', 'lists_users.lists_id')
-            ->where([['type_id','L'], // L -> Lists
-                    ['lists_users.user_id', auth()->id()]]);
-
-        $messages = DB::table('messages')
-            ->select('messages.id', 'users.name as from', 'messages.subject', 'messages.body', 'messages.created_at')
-            ->join('users', 'users.id', 'messages.user_id')
-            ->join('messages_recipients', 'messages_recipients.message_id', 'messages.id')
-            ->where([['type_id','U'], // U -> Users
-                    ['messages_recipients.to_id', auth()->id()]])
-            ->union($listMessages)
-            ->latest()
-            ->get();
-
+        $messages = Message::getInbox();
         return view('messages.inbox', compact('messages'));
     }
 
@@ -133,5 +114,16 @@ class MessagesController extends Controller
             
 
         return view('messages.trash', compact('messages'));
+    }
+
+    public function delete(){
+        // Only checkBoxes in 'on'
+        $messages = array_filter(request()->all(), function($var) {
+            return($var == 'on');
+        });
+        foreach ($messages as $key => $value) {
+            Message::find($key)->toTrash();
+        }
+        return back();
     }
 }

@@ -22,7 +22,7 @@ class DashboardController extends Controller
 
         $charts   = [];
         $today = Carbon::now()->format('Y-m-d');
-        $daySales = $this->getDaySales($today);
+        $daySales = $this->getDaySales($today); 
         $zones    = Zone::all();
         
         foreach($zones as $zone) {

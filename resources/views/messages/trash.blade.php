@@ -1,31 +1,31 @@
-@extends('layout')
+@extends('layouts.master')
 
 @section('content')
 	<!--tab start-->
-	<div class="container-fluid full-width-container inbox">
+	<div class="container-fluid inbox">
 		<!-- Title -->
-		<h1 class="section-title" id="services">
-			<span>Mensajes Eliminados</span>
-		</h1><!-- End Title -->
-	
-		<div class="container-fluid row">
-			<div class="col s6">
-				<!--breadcrum start-->
-				<ol class="breadcrumb text-left">
+		<div class="row">
+			<div class="col s8">
+				<h1 class="section-title" id="services">
+					<span>Mensajes Eliminados</span>
+				</h1><!-- End Title -->
+			</div>
+			<div class="col s4 right-align">
+				<a class="btn btn-top waves-effect waves-light blue lighten-1" href="/messages/inbox">Recibidos</a>&nbsp;
+				<a class="btn btn-top waves-effect waves-light blue lighten-1" href="/messages/sent">Enviados</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+			<!--breadcrum start-->
+			<ol class="breadcrumb text-left">
 				<li><a href="/messages">Mensajes</a></li>
 				<li class="active">Papelera</li>
-				</ol><!--breadcrum end-->
-			</div>
-			<div class="col s6 right-align">
-				<a class="btn waves-effect waves-light blue lighten-1" href="/messages/inbox">Recibidos</a>
-				&nbsp;
-				<a class="btn waves-effect waves-light blue lighten-1" href="/messages/sent">Enviados</a>
+			</ol><!--breadcrum end-->
 			</div>
 		</div>
 
-
 		<div class="section" id="inbox"> 
-						
 				<!-- section content start-->
 				<div class="section-inner">
 					<div class="row">
@@ -33,14 +33,6 @@
                         	<div class="mailbox">
                     	  		<div class="action-bar row">
                         			<div class="col-lg-6 col-xs-4">
-										<span class="checkbox pull-left">
-											<label class="pmd-checkbox checkbox-pmd-ripple-effect">
-												<input type="checkbox" value="">
-											</label>
-										</span>
-                                		<a href="javascript:void(0);" class="btn-link pmd-ripple-effect btn-delete pull-left">
-											<i class="material-icons md-dark pmd-sm">delete</i>
-										</a>
                             		</div>
 									<div class="col-lg-6 col-xs-8">
 										<div class="form-group icon-right">
@@ -57,7 +49,7 @@
 										<ul class="list-group pmd-z-depth pmd-list-twoline card-wp">
                                             @foreach ($messages as $message)
 												<li class="list-group-item unread">
-													<a href="/messages/inbox/{{ $message->id }}">
+													<a href="/messages/{{ $message->id }}">
 													<div class="media-left media-check">
 														<span class="checkbox">
 															<label class="pmd-checkbox checkbox-pmd-ripple-effect">
@@ -68,7 +60,7 @@
 													<div class="media-left user-details">
 														<span class="avatar-list-img40x40"><img alt="40x40" class="img-responsive" src="/images/avatar-icon-40x40.png" data-holder-rendered="true"></span>  
 														<div class="avatar-detail">
-															<h3 class="list-group-item-heading">{{ $message->from }}</h3>
+															<h3 class="list-group-item-heading">{{ $message->getRecipients() }}</h3>
 														</div>
 													</div>
 													<div class="media-body media-middle">

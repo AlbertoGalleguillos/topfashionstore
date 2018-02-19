@@ -9,6 +9,10 @@
 }
 */
 
+.btn-top{
+  margin-top: 15px;
+}
+
 .promo i{
   margin:40px 0;
   color:#4285f4;
@@ -125,7 +129,7 @@
  .grow-up{ margin-left:5px;}
  
  /*======= Breadcrumb =======*/
- .breadcrumb { background: transparent; font-size:14px; padding:0;left:-10px;position:relative}
+ .breadcrumb { background: transparent; font-size:14px; padding:0;}
  
  /*================= site activity css =========================*/
  /*total sales circle chart css*/
@@ -383,7 +387,7 @@
  .mailbox .list-group-item .avtar-detail .list-group-item-text{font-size:13px;line-height:1.25;margin-top:4px;display:inline-block;color:rgba(0, 0, 0, 0.54);opacity:1;}
  .mailbox .action-bar .checkbox{margin:4px 0 0 16px; width:18px;}
  .mailbox .action-bar .checkbox .custom-checkbox{width:18px;height:16px;display:inline-block;vertical-align:middle;}
- .mailbox .action-bar .btn-delete{background:transparent;padding:5px;height:35px;width:auto;min-width:inherit;vertical-align:middle;line-height:31px; margin-left:10px;}
+ .mailbox .action-bar .btn-delete{background:transparent;padding:5px;height:35px;width:auto;min-width:inherit;vertical-align:middle;line-height:31px; margin-left:5px;}
  .mailbox .action-bar .floatinglabels{position:relative;}
  .mailbox .action-bar .floatinglabels .form-control{border-color:#ccc;}
  .mailbox .action-bar .dic-search{bottom: 5px;color: #848484;display: inline-block;font-size: 20px;position: absolute;right: 0;width: 20px;}
