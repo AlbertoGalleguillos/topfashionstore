@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTicketsTable extends Migration
+class CreateTicketCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateTicketsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('ticket_comments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('area_id')->unsigned();
-            $table->foreign('area_id')->references('id')->on('areas');
+            $table->integer('ticket_id')->unsigned();
+            $table->foreign ('ticket_id')->references('id')->on('tickets');
             $table->text('body');
-            $table->tinyInteger('progress')->unsigned()->default(0); // 0% de Avance 
-            $table->text('solution');
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ class CreateTicketsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('ticket_comments');
     }
 }

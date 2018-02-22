@@ -40,7 +40,7 @@
 												<td>{{ $ticket->created_at->format('d-m-Y') }}</td>
 												<td>{{ $ticket->body }}</td>
 												<td>{{ $ticket->progress }}%</td>
-												<td>{{ $ticket->status->name }}</td>
+												<td>{{ $ticket->currentStatus() }}</td>
 												<td class="center-align"><a href="/tickets/{{ $ticket->id }}"><i class="material-icons">visibility</i></a></td>
 											</tr>
 											@endforeach

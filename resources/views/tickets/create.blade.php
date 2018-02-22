@@ -26,7 +26,7 @@
 					<div class="col-lg-12 col-xs-12 col-sm-12 col-md-12">
 						<div class="mailbox">
 							<div class="card-panel">
-								<form method="POST" action="/tickets">
+								<form method="POST" action="/tickets" enctype="multipart/form-data">
 									{{ csrf_field() }}
 									<div class="row">
 										<br>
@@ -45,9 +45,18 @@
 									</div>
 									<div class="row">
 										<div class="input-field col s12">
-          									<textarea name="body" id="body" class="materialize-textarea"></textarea>
+          									<textarea name="body" id="body" class="materialize-textarea" required></textarea>
           									<label for="body">Descripción</label>
         								</div>
+									</div>
+									<div class="file-field input-field">
+										<div class="btn blue lighten-1">
+											<span>Adjuntar Archivo</span>
+											<input type="file" name="attachments[]" multiple>
+										</div>
+										<div class="file-path-wrapper">
+											<input class="file-path validate" type="text" placeholder="Adjunta uno o más archivos">
+										</div>
 									</div>
 									<div class="center-align">
 										<button class="waves-effect waves-light btn blue lighten-1" type="submit">
