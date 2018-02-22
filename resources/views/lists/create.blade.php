@@ -17,7 +17,7 @@
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="input-field col s12">
-                    <input id="name" name="name" type="text" class="validate" required>
+                    <input id="name" name="name" type="text" class="validate" required autofocus>
                     <label for="name">Nombre: </label>
                     </div>
                 </div>

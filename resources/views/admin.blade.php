@@ -24,7 +24,7 @@
     </div>
     <div class="row">
         <div class="col s12 m6">
-            <a href="/ticket">
+            <a href="/tickets">
                 <div class="center promo card-panel"><br>
                     <i class="material-icons">feedback</i>
                     <p>Requerimientos (Tickets)</p>

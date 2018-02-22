@@ -17,18 +17,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', 'DashboardController@index');
+
+Route::get('/messages', 'MessagesController@index');
 Route::get('/messages/inbox', 'MessagesController@inbox');
 Route::get('/messages/sent', 'MessagesController@sent');
 Route::get('/messages/trash', 'MessagesController@trash');
 Route::get('/messages/create', 'MessagesController@create');
 Route::get('/messages/create/{reply?}/{reply_subject?}', 'MessagesController@reply');
 Route::get('/messages/{message}', 'MessagesController@show');
-Route::get('/messages', 'MessagesController@index');
-
 Route::post('/messages', 'MessagesController@store');
 Route::delete('/messages/delete', 'MessagesController@delete');
 
-Route::get('/dashboard', 'DashboardController@index');
+Route::get('/tickets', 'TicketController@index');
+Route::get('/tickets/create', 'TicketController@create');
+Route::post('/tickets', 'TicketController@store');
 
 Route::get('/autocomplete', function (){
     return view('autocomplete');
@@ -50,9 +53,7 @@ Route::get('/admin', function (){
     return view('admin');
 });
 
-Route::get('/tickets', function (){
-    return view('tickets');
-});
+
 
 Route::get('/meeting', function (){
     return view('meeting');
@@ -64,4 +65,12 @@ Route::get('/features', function (){
 
 Route::get('/profile', function (){
     return view('profile');
+});
+
+Route::get('/new', function (){
+    return view('layouts.new_master');
+});
+
+Route::get('/form', function (){
+    return view('form');
 });

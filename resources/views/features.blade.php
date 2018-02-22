@@ -27,12 +27,12 @@
 							</tr>
 						<tr>
 							<td class="center">2</td>
-							<td>Botón Búsqueda de Mensajes * No todavía</td>
+							<td>Botón Búsqueda de Mensajes - No todavía</td>
 							<td class="center">2</td>
 						</tr>
 						<tr>
 							<td class="center">3</td>
-							<td>Módulo de Requerimientos (Tickets)</td>
+							<td>Módulo de Requerimientos (Tickets) - En progreso</td>
 							<td class="center">5-10</td>
 						</tr>
 						<tr>

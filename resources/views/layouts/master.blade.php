@@ -8,6 +8,8 @@
 <title>Top Fashion Store</title>
 <link rel="shortcut icon" type="image/x-icon" href="themes/images/favicon.ico">
 
+<link rel="stylesheet" type="text/css" href="/css/master.css">
+
 <!-- Google icon -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -32,6 +34,8 @@
 <!-- Styles Ends -->
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
 
 </head>
 
@@ -184,6 +188,12 @@
                 <span class="media-body">Mensajes</span>
             </a> 
         </li>
+		<li> 
+            <a class="pmd-ripple-effect" href="/tickets">
+				<i class="media-left media-middle material-icons">feedback</i>
+                <span class="media-body">Requerimientos</span>
+            </a> 
+        </li>
 		{{--
 		<li class="dropdown pmd-dropdown"> 
 			<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media" data-sidebar="true" href="javascript:void(0);">	
@@ -266,14 +276,15 @@
 <!-- Footer Ends -->
 
 
-<!-- Scripts Starts -->  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<!-- Scripts Starts -->  
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 <!-- build:[src] assets/js/ -->
 <script src="/js/jquery-1.12.2.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/propeller.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
-<script src="{{ asset('js/app.js') }}"></script>
+
 
 <!-- /build -->
 <script>

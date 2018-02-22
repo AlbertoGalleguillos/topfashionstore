@@ -9,6 +9,10 @@
 }
 */
 
+.application--wrap {
+  min-height: 0;
+}
+
 .btn-top{
   margin-top: 15px;
 }
