@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    @if (count($list->listsUsers))
+    @if (count($list->listUsers))
     <div class="card-panel">    
         <div class="row">
             <div class="col s12">
@@ -38,7 +38,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($list->listsUsers as $listUser)
+                        @foreach ($list->listUsers as $listUser)
                         <tr>
                             <td>{{ $listUser->user->name }}</td>
                             <td class="right-align"> 

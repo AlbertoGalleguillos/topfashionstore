@@ -4,7 +4,7 @@ namespace App;
 
 class Lists extends Model
 {
-    public function listsUsers() {
+    public function listUsers() {
         return $this->hasMany(ListsUser::class);
     }
 }

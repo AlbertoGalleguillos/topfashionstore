@@ -19,6 +19,9 @@ Route::get('/', function () {
 
 Route::get('/dashboard', 'DashboardController@index');
 
+Route::get('/profile', 'ProfileController@index');
+Route::post('/profile', 'ProfileController@updatePassword');
+
 Route::get('/messages', 'MessagesController@index');
 Route::get('/messages/inbox', 'MessagesController@inbox');
 Route::get('/messages/sent', 'MessagesController@sent');
@@ -70,9 +73,7 @@ Route::get('/features', function (){
     return view('features');
 });
 
-Route::get('/profile', function (){
-    return view('profile');
-});
+
 
 Route::get('/new', function (){
     return view('layouts.new_master');

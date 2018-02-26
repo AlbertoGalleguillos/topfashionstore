@@ -9,6 +9,7 @@ use App\MessagesAttachment;
 use App\MessagesRecipients;
 use App\User;
 use App\Lists;
+use App\Notification;
 use JavaScript;
 
 use Illuminate\Support\Facades\DB;
@@ -71,26 +72,41 @@ class MessagesController extends Controller
             }
         }
 
+        function newNotification($user_id, $message_id, $user_name) {
+            Notification::create([
+                'user_id' => $user_id,
+                'url' => '/messages/' . $message_id,
+                'body' =>  $user_name . ' te ha enviado un mensaje !'
+            ]);
+        }
+
         //Save Recipients
         $recipients = explode(',', request(['recipients'][0]));
         if($recipients) {
             foreach ($recipients as $recipient) {
                 if($recipient) {
-                    $user = User::where('name', trim($recipient))->first();
-                    if ($user) {
+                    $model = User::where('name', trim($recipient))->first();
+                    if ($model) {
                         $type_id = 'U'; // User
+                        newNotification($model->id, $message->id, auth()->user()->name);
                     } else {
                         $type_id = 'L'; // List
-                        $user = Lists::where('name', trim($recipient))->first();
+                        $model = Lists::where('name', trim($recipient))->first();
+                        //dd($model->listUsers);
+                        foreach($model->listUsers as $list) {
+                            newNotification($list->user_id, $message->id, auth()->user()->name);
+                        }
                     }
                     MessagesRecipients::create([
                         'message_id' => $message->id,
-                        'to_id' => $user->id,
+                        'to_id' => $model->id,
                         'type_id' => $type_id
                     ]);
                 }
             }
         }
+
+        
 
         // Redirect to index
         return redirect('/messages/inbox');
@@ -126,4 +142,6 @@ class MessagesController extends Controller
         }
         return back();
     }
+
+
 }
