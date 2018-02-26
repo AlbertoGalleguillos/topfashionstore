@@ -20,6 +20,10 @@ class AppServiceProvider extends ServiceProvider
         // length is 767 bytes (SQL: alter table `users` add unique `users_email_unique`(`email`)) 
         Schema::defaultStringLength(191);
         Carbon::setlocale(config('app.locale'));
+
+        view()->composer('layouts.master', function($view){
+            $view->with('unread_notifications', auth()->user()->unread());
+        });
     }
 
     /**

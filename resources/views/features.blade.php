@@ -72,7 +72,7 @@
 						</tr>          
 						<tr>
 							<td class="center">11</td>
-							<td>Migración Ventas Históricas</td>
+							<td><s>Migración Ventas Históricas</s></td>
 							<td class="center">2</td>
 						</tr>          
 						<tr>

@@ -35,7 +35,15 @@ class User extends Authenticatable
         return $this->hasMany(Ticket::class);
     }
 
+    public function notifications() {
+        return $this->hasMany(Notification::class);
+    }
+
     public function send(Message $message) {
         $this->messages()->save($message);
+    }
+
+    public function unread() {
+        return $this->notifications()->where('read', false)->count();
     }
 }

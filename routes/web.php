@@ -35,6 +35,10 @@ Route::get('/tickets/{ticket}', 'TicketController@show');
 Route::post('/tickets', 'TicketController@store');
 Route::post('/tickets/comment', 'TicketController@addComent');
 
+Route::get('/notifications', 'NotificationController@index');
+Route::post('/notifications/{notification}', 'NotificationController@read');
+
+
 
 Route::get('/autocomplete', function (){
     return view('autocomplete');

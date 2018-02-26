@@ -8,8 +8,6 @@
 <title>Top Fashion Store</title>
 <link rel="shortcut icon" type="image/x-icon" href="themes/images/favicon.ico">
 
-<link rel="stylesheet" type="text/css" href="/css/master.css">
-
 <!-- Google icon -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -31,6 +29,8 @@
 
 <!-- Propeller admin theme css-->
 <link rel="stylesheet" type="text/css" href="/css/propeller-admin.css">
+
+<link rel="stylesheet" type="text/css" href="/css/master.css">
 <!-- Styles Ends -->
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -67,12 +67,15 @@
 			</a>
 		</li>
 		<!-- End user info -->
-        <li> 
-            <a class="pmd-ripple-effect" href="/dashboard">	
-                <i class="media-left media-middle material-icons">dashboard</i>
-                <span class="media-body">Dashboard</span>
-            </a> 
-        </li>
+		{{-- // TODO: Refactor this with Roles and Permission --}}
+		@if (in_array(auth()->id(), [1,2]))
+			<li> 
+				<a class="pmd-ripple-effect" href="/dashboard">	
+					<i class="media-left media-middle material-icons">dashboard</i>
+					<span class="media-body">Dashboard</span>
+				</a> 
+			</li>
+		@endif
 		<li> 
             <a class="pmd-ripple-effect" href="/messages/inbox">
                 <i class="media-left media-middle material-icons">mail</i>
@@ -88,7 +91,10 @@
 		<li> 
 			<a class="pmd-ripple-effect" href="/notifications">	
 				<i class="media-left media-middle material-icons">notifications</i> 
-				<span class="media-body">Notifications</span>
+				<span class="media-body" style="width:10px">Notificaciones</span>
+				@if ($unread_notifications > 0)
+					<div class="media-body right-align"><span class="badge">{{ $unread_notifications }}</span></div>
+				@endif
 			</a> 
 		</li>
 		<!-- <li class="dropdown pmd-dropdown"> 
