@@ -4,7 +4,7 @@
 <br>
 <div class="container">
     <div class="row">
-        <div class="col s12 m6">
+        <div class="col s12 m4">
             <a href="/lists">
                 <div class="center promo card-panel"><br>
                     <i class="material-icons">group</i>
@@ -12,12 +12,19 @@
                 </div>
             </a>
         </div>
-
-        <div class="col s12 m6">
+        <div class="col s12 m4">
             <a href="/meeting">
                 <div class="center promo card-panel"><br>
                     <i class="material-icons">work</i>
                     <p>Reuniones</p>
+                </div>
+            </a>
+        </div>
+        <div class="col s12 m4">
+            <a href="{{ route('register') }}">
+                <div class="center promo card-panel"><br>
+                    <i class="material-icons">face</i>
+                    <p>Nuevo Usuario</p>
                 </div>
             </a>
         </div>

@@ -46,6 +46,7 @@ class Message extends Model
     }
 
     public function getRecipients() {
+        $recipient_names = ''; // To get null results
         $sw = true;
         foreach ($this->recipients as $recipient){
             if ($recipient->type_id == 'U') { // U -> User
