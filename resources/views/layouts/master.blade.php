@@ -106,6 +106,15 @@
 				@endif
 			</a> 
 		</li>
+		{{-- // TODO: Refactor this with Roles and Permission --}}
+		@if (in_array(auth()->id(), [1]))
+			<li> 
+				<a class="pmd-ripple-effect" href="/admin">
+					<i class="media-left media-middle material-icons">settings</i>
+					<span class="media-body">Administración</span>
+				</a> 
+			</li>
+		@endif
 		<!-- <li class="dropdown pmd-dropdown"> 
 			<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media" data-sidebar="true" href="javascript:void(0);">	
 				<i class="media-left media-middle">
@@ -171,13 +180,12 @@
 
 
 <!-- Scripts Starts -->  
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="/js/jquery-1.12.2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 <!-- build:[src] assets/js/ -->
-<script src="/js/jquery-1.12.2.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/propeller.min.js"></script>
-
+<script src="{{ asset('js/app.js') }}"></script>
 
 
 <!-- /build -->

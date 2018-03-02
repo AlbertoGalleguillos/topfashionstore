@@ -58,7 +58,6 @@
 								<div id="detained" class="col s12">Test 2</div>
 								<div id="in-progress" class="col s12">Test 3</div>
 								<div id="finished" class="col s12">Test 3</div>
-								
 							</div>
 						</div>
 					</div>
@@ -67,7 +66,7 @@
 		</div>
 	</div><!-- tab end -->
 	
-	<div class="fixed-action-btn">
+	{{--<div class="fixed-action-btn">
 		<a href="/tickets/create" class="btn-floating btn-large waves-effect waves-light blue lighten-1"><i class="material-icons">create</i></a>
-	</div> 
+	</div> --}}
 @endsection

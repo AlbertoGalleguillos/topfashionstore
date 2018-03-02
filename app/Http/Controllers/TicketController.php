@@ -6,6 +6,7 @@ use App\Http\Requests\UploadRequest;
 use Illuminate\Http\Request;
 use App\Area;
 use App\Constant;
+use App\Notification;
 use App\Ticket;
 use App\TicketComment;
 use App\TicketHistory;
@@ -13,8 +14,7 @@ use App\TicketAttachment;
 
 class TicketController extends Controller
 {
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth');
     }
 
@@ -27,8 +27,7 @@ class TicketController extends Controller
 
 
     public function create() {
-        $areas = Area::all();
-        return view('tickets.create', compact('areas'));
+        return view('tickets.create');
     }
 
     public function store(UploadRequest $request) {
@@ -91,5 +90,25 @@ class TicketController extends Controller
 
     public function edit(Ticket $ticket) {
         return view('tickets.edit', compact('ticket'));
+    }
+
+    public function update(Ticket $ticket) {
+        //Add Coment
+        $comment = request('comment');
+        if (isset($comment)) {
+            TicketComment::create([
+                'user_id' => auth()->id(),
+                'ticket_id' => $ticket->id,
+                'body' => request('comment')
+            ]);
+            Notification::create([
+                'user_id' => auth()->id(),
+                'url' => '/tickets/' . $ticket->id,
+                'body' =>  Constant::NOTIFICATION_NEW_COMMENT
+            ]);
+        }
+        dd(isset($solution));
+        //dd($ticket);
+        //return view('tickets.edit', compact('ticket'));
     }
 }

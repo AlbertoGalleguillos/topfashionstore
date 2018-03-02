@@ -26,3 +26,8 @@
 .no-float {
   float: none;
 }
+
+select {
+  padding: 0;
+  height: auto;
+}

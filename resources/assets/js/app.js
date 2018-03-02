@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('assign-user',require('./components/AssignUser.vue'));
 Vue.component('autocomplete-recipients',require('./components/AutocompleteRecipients.vue'));
 Vue.component('autocomplete-users',require('./components/AutocompleteUsers.vue'));
 Vue.component('area-select',require('./components/SelectArea.vue'));

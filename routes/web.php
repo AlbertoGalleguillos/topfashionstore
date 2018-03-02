@@ -1,7 +1,5 @@
 <?php
 
-use App\Message;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,14 +11,16 @@ use App\Message;
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', 'DashboardController@index');
-
 Route::get('/profile', 'ProfileController@index');
 Route::post('/profile', 'ProfileController@updatePassword');
+
+Route::get('/dashboard', 'DashboardController@index');
 
 Route::get('/messages', 'MessagesController@index');
 Route::get('/messages/inbox', 'MessagesController@inbox');
@@ -39,49 +39,20 @@ Route::get('/tickets/create', 'TicketController@create');
 Route::get('/tickets/{ticket}', 'TicketController@show');
 Route::post('/tickets', 'TicketController@store');
 Route::post('/tickets/comment', 'TicketController@addComent');
-
+Route::post('/tickets/edit/{ticket}', 'TicketController@update');
 
 Route::get('/notifications', 'NotificationController@index');
 Route::post('/notifications/{notification}', 'NotificationController@read');
 
-
-
-Route::get('/autocomplete', function (){
-    return view('autocomplete');
-});
-
-Auth::routes();
+Route::get('/admin', 'AdminController@index');
+Route::get('/meeting', 'AdminController@meeting');
+Route::get('/features', 'AdminController@features');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/lists', 'ListsController@index');
 Route::get('/lists/create', 'ListsController@create');
 Route::get('/lists/{list}/edit', 'ListsController@edit');
-
 Route::post('/lists', 'ListsController@store');
 Route::post('/lists/{list}/addUser', 'ListsController@addUser');
 Route::delete('/lists/removeUser/{listUser}', 'ListsController@destroy');
-
-Route::get('/admin', function (){
-    return view('admin');
-});
-
-
-
-Route::get('/meeting', function (){
-    return view('meeting');
-});
-
-Route::get('/features', function (){
-    return view('features');
-});
-
-
-
-Route::get('/new', function (){
-    return view('layouts.new_master');
-});
-
-Route::get('/form', function (){
-    return view('form');
-});
