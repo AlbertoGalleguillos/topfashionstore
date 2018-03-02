@@ -107,7 +107,7 @@
                                     {{ csrf_field() }}
                                     <input type="hidden" value="{{ $ticket->id }}" name="ticket_id">
                                     <div class="input-field col s12">
-                                        <textarea name="body" id="body" class="materialize-textarea"></textarea>
+                                        <textarea name="body" id="body" class="materialize-textarea" required></textarea>
                                         <label for="body">Nuevo Comentario</label>
                                     </div>
                                     <div class="center-align">
@@ -122,5 +122,6 @@
 				</div>
 			</div> <!-- section content end -->  
 		</div>
+		@include('layouts.errors')
 	</div><!-- tab end -->
 @endsection

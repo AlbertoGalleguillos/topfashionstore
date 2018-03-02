@@ -88,6 +88,15 @@
                 <span class="media-body">Requerimientos</span>
             </a> 
         </li>
+		{{-- // TODO: Refactor this with Roles and Permission --}}
+		@if (in_array(auth()->id(), [1,2]))
+			<li> 
+				<a class="pmd-ripple-effect" href="/tickets/admin">
+					<i class="media-left media-middle material-icons">build</i>
+					<span class="media-body">Admin. Requerimientos</span>
+				</a> 
+			</li>
+		@endif
 		<li> 
 			<a class="pmd-ripple-effect" href="/notifications">	
 				<i class="media-left media-middle material-icons">notifications</i> 

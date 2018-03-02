@@ -66,17 +66,30 @@ class TicketController extends Controller
     }
 
     public function show(Ticket $ticket) {
-        //dd($ticket);
         return view('tickets.show', compact('ticket'));
     }
 
     public function addComent() {
-        //dd(request(['ticket_id','body']));
+
+        $this->validate(request(), [
+            'ticket_id' => 'required',
+            'body' => 'required'
+        ]);
+
         TicketComment::create([
             'user_id' => auth()->id(),
             'ticket_id' => request('ticket_id'),
             'body' => request('body'),
         ]);
         return back();
+    }
+
+    public function admin() {
+        $tickets = Ticket::latest()->get();
+        return view('tickets.admin', compact('tickets'));
+    }
+
+    public function edit(Ticket $ticket) {
+        return view('tickets.edit', compact('ticket'));
     }
 }

@@ -33,10 +33,13 @@ Route::post('/messages', 'MessagesController@store');
 Route::delete('/messages/delete', 'MessagesController@delete');
 
 Route::get('/tickets', 'TicketController@index');
+Route::get('/tickets/admin', 'TicketController@admin');
+Route::get('/tickets/edit/{ticket}', 'TicketController@edit');
 Route::get('/tickets/create', 'TicketController@create');
 Route::get('/tickets/{ticket}', 'TicketController@show');
 Route::post('/tickets', 'TicketController@store');
 Route::post('/tickets/comment', 'TicketController@addComent');
+
 
 Route::get('/notifications', 'NotificationController@index');
 Route::post('/notifications/{notification}', 'NotificationController@read');

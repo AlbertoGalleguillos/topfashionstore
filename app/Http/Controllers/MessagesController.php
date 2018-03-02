@@ -123,7 +123,7 @@ class MessagesController extends Controller
                     }
                 }
             }
-
+        // End Transaction
         });
 
         // Redirect to index
