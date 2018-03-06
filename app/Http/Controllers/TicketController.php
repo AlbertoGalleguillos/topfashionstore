@@ -8,9 +8,12 @@ use App\Area;
 use App\Constant;
 use App\Notification;
 use App\Ticket;
+use App\TicketAssign;
+use App\TicketAttachment;
 use App\TicketComment;
 use App\TicketHistory;
-use App\TicketAttachment;
+use App\TicketStatus;
+use App\User;
 
 class TicketController extends Controller
 {
@@ -84,8 +87,12 @@ class TicketController extends Controller
     }
 
     public function admin() {
-        $tickets = Ticket::latest()->get();
-        return view('tickets.admin', compact('tickets'));
+        $ticketsInbox = Ticket::byStatus(1); // En Espera
+        $ticketsDetained = Ticket::byStatus(2); // Detenido
+        $ticketsInProgress = Ticket::byStatus(3); // En Progreso
+        $ticketsFinished = Ticket::byStatus(4); // Terminado
+        $messageDefault = Constant::TICKET_ADMIN_DEFAULT;
+        return view('tickets.admin', compact('ticketsInbox','ticketsDetained','ticketsInProgress','ticketsFinished','messageDefault'));
     }
 
     public function edit(Ticket $ticket) {
@@ -93,22 +100,74 @@ class TicketController extends Controller
     }
 
     public function update(Ticket $ticket) {
-        //Add Coment
+        //dd(request()->all());
+        // Finish Ticket
+        $progress = request('progress');
+        $solution = request('solution');
+        if (($progress == 100) && (isset($solution))) {
+            TicketHistory::create([
+                'ticket_id' => $ticket->id,
+                'status_id' => 4 // Terminado
+            ]);
+            Notification::create([
+                'user_id' => auth()->id(),
+                'url' => '/tickets/' . $ticket->id,
+                'body' => 'Su requerimiento ha sido Terminado'
+            ]);
+            $ticket->solution = $solution;
+            $ticket->progress = $progress;
+            $ticket->save();
+        } else {
+            redirect(back())->withErrors('Para cerrar un requerimiento su progreso debe ser 100% y debe ingresar una solución');
+        }
+
+        // Add Coment
         $comment = request('comment');
         if (isset($comment)) {
             TicketComment::create([
                 'user_id' => auth()->id(),
                 'ticket_id' => $ticket->id,
-                'body' => request('comment')
+                'body' => $comment
             ]);
             Notification::create([
                 'user_id' => auth()->id(),
                 'url' => '/tickets/' . $ticket->id,
-                'body' =>  Constant::NOTIFICATION_NEW_COMMENT
+                'body' => Constant::NOTIFICATION_NEW_COMMENT
             ]);
         }
-        dd(isset($solution));
-        //dd($ticket);
-        //return view('tickets.edit', compact('ticket'));
+
+        // Assign To ...
+        $assign = request('assign');
+        if (isset($assign)) {
+            $message = 'Su requerimiento ha sido asignado a ' . $assign;
+            TicketComment::create([
+                'user_id' => auth()->id(),
+                'ticket_id' => $ticket->id,
+                'body' => $message
+            ]);
+            TicketHistory::create([
+                'ticket_id' => $ticket->id,
+                'status_id' => 3 // En progreso
+            ]);
+            Notification::create([
+                'user_id' => auth()->id(),
+                'url' => '/tickets/' . $ticket->id,
+                'body' => $message
+            ]);
+            $userAssign = User::where('name',trim($assign))->first();
+            TicketAssign::create([
+                'ticket_id' => $ticket->id,
+                'user_id' => $userAssign->id
+            ]);
+        }
+
+        // Update Area
+        $area = request('area');
+        if ($area != $ticket->area) {
+            $ticket->area = $area;
+            $ticket->save();
+        }
+
+        return back();
     }
 }

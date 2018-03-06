@@ -36,12 +36,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											@if (is_string($tickets))
-												<tr>
-													<td colspan=5 class="center-align">{{ $tickets }}</td>
-												</tr>
-											@else
-												@foreach($tickets as $ticket)
+											@forelse($ticketsInbox as $ticket)
 												<tr>
 													<td>{{ $ticket->id }}</td>
 													<td>{{ $ticket->created_at->format('d-m-Y') }}</td>
@@ -50,14 +45,104 @@
 													<td>{{ $ticket->currentStatus() }}</td>
 													<td class="center-align"><a href="/tickets/edit/{{ $ticket->id }}"><i class="material-icons">edit</i></a></td>
 												</tr>
-												@endforeach
-											@endif
+											@empty
+												<tr>
+													<td colspan=5 class="center-align">{{ $messageDefault }}</td>
+												</tr>
+											@endforelse
 										</tbody>
 									</table>
 								</div>
-								<div id="detained" class="col s12">Test 2</div>
-								<div id="in-progress" class="col s12">Test 3</div>
-								<div id="finished" class="col s12">Test 3</div>
+								<div id="detained" class="s12">
+									<table class="highlight">
+										<thead>
+											<tr>
+												<th>N°</th>
+												<th>Fecha</th>
+												<th>Descripción</th>
+												<th>Avance</th>
+												<th>Estado</th>
+												<th>Acciones</th>
+											</tr>
+										</thead>
+										<tbody>
+											@forelse($ticketsDetained as $ticket)
+												<tr>
+													<td>{{ $ticket->id }}</td>
+													<td>{{ $ticket->created_at->format('d-m-Y') }}</td>
+													<td>{{ $ticket->body }}</td>
+													<td>{{ $ticket->progress }}%</td>
+													<td>{{ $ticket->currentStatus() }}</td>
+													<td class="center-align"><a href="/tickets/edit/{{ $ticket->id }}"><i class="material-icons">edit</i></a></td>
+												</tr>
+											@empty
+												<tr>
+													<td colspan=5 class="center-align">{{ $messageDefault }}</td>
+												</tr>
+											@endforelse
+										</tbody>
+									</table>
+								</div>								
+								<div id="in-progress" class="s12">
+									<table class="highlight">
+										<thead>
+											<tr>
+												<th>N°</th>
+												<th>Fecha</th>
+												<th>Descripción</th>
+												<th>Avance</th>
+												<th>Estado</th>
+												<th>Acciones</th>
+											</tr>
+										</thead>
+										<tbody>
+											@forelse($ticketsInProgress as $ticket)
+												<tr>
+													<td>{{ $ticket->id }}</td>
+													<td>{{ $ticket->created_at->format('d-m-Y') }}</td>
+													<td>{{ $ticket->body }}</td>
+													<td>{{ $ticket->progress }}%</td>
+													<td>{{ $ticket->currentStatus() }}</td>
+													<td class="center-align"><a href="/tickets/edit/{{ $ticket->id }}"><i class="material-icons">edit</i></a></td>
+												</tr>
+											@empty
+												<tr>
+													<td colspan=5 class="center-align">{{ $messageDefault }}</td>
+												</tr>
+											@endforelse
+										</tbody>
+									</table>
+								</div>
+								<div id="finished" class="s12">
+									<table class="highlight">
+										<thead>
+											<tr>
+												<th>N°</th>
+												<th>Fecha</th>
+												<th>Descripción</th>
+												<th>Avance</th>
+												<th>Estado</th>
+												<th>Acciones</th>
+											</tr>
+										</thead>
+										<tbody>
+											@forelse($ticketsFinished as $ticket)
+												<tr>
+													<td>{{ $ticket->id }}</td>
+													<td>{{ $ticket->created_at->format('d-m-Y') }}</td>
+													<td>{{ $ticket->body }}</td>
+													<td>{{ $ticket->progress }}%</td>
+													<td>{{ $ticket->currentStatus() }}</td>
+													<td class="center-align"><a href="/tickets/edit/{{ $ticket->id }}"><i class="material-icons">edit</i></a></td>
+												</tr>
+											@empty
+												<tr>
+													<td colspan=5 class="center-align">{{ $messageDefault }}</td>
+												</tr>
+											@endforelse
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>

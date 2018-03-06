@@ -18,6 +18,7 @@
             recipients: '',
             results: [],
             include_comma: false
+            //message: substr(0,this.recipients.lastIndexOf(',')+2)
         }
     },
     methods: {
@@ -27,8 +28,8 @@
                 this.recipients = message + ',';
             } else {
                 this.recipients = this.recipients
-                                    .substr(0,this.recipients.lastIndexOf(',')+2)
-                                    + message + ',';
+                                    .substr(0,this.recipients.lastIndexOf(',')+1)
+                                    + ' ' + message + ',';
             }
             this.results = [];
         },

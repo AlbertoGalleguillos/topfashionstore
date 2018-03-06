@@ -39,6 +39,10 @@ class User extends Authenticatable
         return $this->hasMany(Notification::class);
     }
 
+    public function assign() {
+        return $this->hasMany(TicketAssign::class);
+    }
+
     public function send(Message $message) {
         $this->messages()->save($message);
     }

@@ -30611,6 +30611,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             recipients: '',
             results: [],
             include_comma: false
+            //message: substr(0,this.recipients.lastIndexOf(',')+2)
         };
     },
 
@@ -30620,7 +30621,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (!this.recipients.includes(',')) {
                 this.recipients = message + ',';
             } else {
-                this.recipients = this.recipients.substr(0, this.recipients.lastIndexOf(',') + 2) + message + ',';
+                this.recipients = this.recipients.substr(0, this.recipients.lastIndexOf(',') + 1) + ' ' + message + ',';
             }
             this.results = [];
         },

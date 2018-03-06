@@ -21,6 +21,7 @@ class CreateTicketStatusesTable extends Migration
 
         DB::table('ticket_statuses')->insert([
             ['name' => 'En Espera', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Detenido', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'En Progreso', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Terminado', 'created_at' => now(), 'updated_at' => now()]
         ]);
