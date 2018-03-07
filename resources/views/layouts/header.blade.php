@@ -8,12 +8,12 @@
 			<!-- Notifications -->
             <div class="dropdown notification icons pmd-dropdown">
 			
-				<a href="javascript:void(0)" title="Notification" class="dropdown-toggle pmd-ripple-effect"  data-toggle="dropdown" role="button" aria-expanded="true">
+				<a href="/messages/create" title="Notification" class="pmd-ripple-effect">
 					{{--<div data-badge="3" class="material-icons md-light pmd-sm pmd-badge  pmd-badge-overlap">notifications_none</div>--}}
-					<div class="material-icons md-light pmd-sm pmd-badge  pmd-badge-overlap">notifications_none</div>
+					<i class="material-icons white-text">edit</i>
 				</a>
 			
-				<div class="dropdown-menu dropdown-menu-right pmd-card pmd-card-default pmd-z-depth" role="menu">
+				{{--<div class="dropdown-menu dropdown-menu-right pmd-card pmd-card-default pmd-z-depth" role="menu">
 					<!-- Card header -->
 					<div class="pmd-card-title">
 						<div class="media-body media-middle">
@@ -85,7 +85,7 @@
 						</li>
 					</ul><!-- End notifications list -->
 
-				</div>
+				</div>--}}
             </div> <!-- End notifications -->
 		</div>
 		<!-- Brand and toggle get grouped for better mobile display -->

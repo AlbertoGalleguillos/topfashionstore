@@ -34,12 +34,14 @@ Route::delete('/messages/delete', 'MessagesController@delete');
 
 Route::get('/tickets', 'TicketController@index');
 Route::get('/tickets/admin', 'TicketController@admin');
+Route::get('/tickets/assign', 'TicketController@assign');
 Route::get('/tickets/edit/{ticket}', 'TicketController@edit');
 Route::get('/tickets/create', 'TicketController@create');
 Route::get('/tickets/{ticket}', 'TicketController@show');
 Route::post('/tickets', 'TicketController@store');
 Route::post('/tickets/comment', 'TicketController@addComent');
 Route::post('/tickets/edit/{ticket}', 'TicketController@update');
+
 
 Route::get('/notifications', 'NotificationController@index');
 Route::post('/notifications/{notification}', 'NotificationController@read');
@@ -48,7 +50,7 @@ Route::get('/admin', 'AdminController@index');
 Route::get('/meeting', 'AdminController@meeting');
 Route::get('/features', 'AdminController@features');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'MessagesController@inbox')->name('home');
 
 Route::get('/lists', 'ListsController@index');
 Route::get('/lists/create', 'ListsController@create');

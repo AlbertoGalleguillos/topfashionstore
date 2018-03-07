@@ -7,6 +7,10 @@ use App\Constant;
 use App\Notification;
 
 class NotificationController extends Controller {
+    
+    public function __construct() {
+        $this->middleware('auth');
+    }
 
     public function index() {
         $notifications = auth()->user()->notifications()->take(50)->latest()->get();

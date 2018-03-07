@@ -15,8 +15,8 @@ use App\TicketHistory;
 use App\TicketStatus;
 use App\User;
 
-class TicketController extends Controller
-{
+class TicketController extends Controller {
+
     public function __construct() {
         $this->middleware('auth');
     }
@@ -27,7 +27,6 @@ class TicketController extends Controller
             $tickets = 'Todavía no has ingresado requerimientos, crea uno utilizando el botón que se encuentra en la esquina inferior derecha';
         return view('tickets.index', compact('tickets'));
     }
-
 
     public function create() {
         return view('tickets.create');
@@ -87,12 +86,21 @@ class TicketController extends Controller
     }
 
     public function admin() {
-        $ticketsInbox = Ticket::byStatus(1); // En Espera
-        $ticketsDetained = Ticket::byStatus(2); // Detenido
-        $ticketsInProgress = Ticket::byStatus(3); // En Progreso
-        $ticketsFinished = Ticket::byStatus(4); // Terminado
+        $areaId = auth()->user()->area_id;
+        $ticketsInbox = Ticket::byStatus(1, null, $areaId); // En Espera
+        $ticketsDetained = Ticket::byStatus(2, null, $areaId); // Detenido
+        $ticketsInProgress = Ticket::byStatus(3, null, $areaId); // En Progreso
+        $ticketsFinished = Ticket::byStatus(4, null, $areaId); // Terminado
         $messageDefault = Constant::TICKET_ADMIN_DEFAULT;
         return view('tickets.admin', compact('ticketsInbox','ticketsDetained','ticketsInProgress','ticketsFinished','messageDefault'));
+    }
+
+    public function assign() {
+        $ticketsDetained = Ticket::byStatus(2, auth()->id()); // Detenido
+        $ticketsInProgress = Ticket::byStatus(3, auth()->id()); // En Progreso
+        $ticketsFinished = Ticket::byStatus(4, auth()->id()); // Terminado
+        $messageDefault = Constant::TICKET_ADMIN_DEFAULT;
+        return view('tickets.assign', compact('ticketsInbox','ticketsDetained','ticketsInProgress','ticketsFinished','messageDefault'));
     }
 
     public function edit(Ticket $ticket) {
@@ -163,7 +171,7 @@ class TicketController extends Controller
 
         // Update Area
         $area = request('area');
-        if ($area != $ticket->area) {
+        if ($area != $ticket->area_id) {
             $ticket->area = $area;
             $ticket->save();
         }

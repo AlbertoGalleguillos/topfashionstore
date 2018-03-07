@@ -2,8 +2,7 @@
 
 namespace App;
 
-class Ticket extends Model
-{
+class Ticket extends Model {
     public function area() {
         return $this->belongsTo(Area::class);
     }
@@ -28,12 +27,18 @@ class Ticket extends Model
         return $this->histories->last()->status->name;
     }
 
-    public static function byStatus($statusId) {
-        return static::select('tickets.id', 'body', 'progress', 'tickets.created_at')//, 'name as currentStatus')
+    public static function byStatus($statusId, $assignId = null, $areaId = null) {
+        return static::select('tickets.id', 'body', 'progress', 'tickets.created_at')
                 ->join('ticket_histories', 'tickets.id', '=', 'ticket_histories.ticket_id')
-                //->join('ticket_statuses', 'ticket_histories.status_id', '=', 'ticket_statuses.id')
                 ->whereRaw('ticket_histories.updated_at = (select max(updated_at) from ticket_histories c
                         where tickets.id = c.ticket_id) and status_id = ?' , $statusId)
+                ->when($assignId, function($query) use ($assignId) {
+                    return $query->join('ticket_assigns', 'tickets.id', '=', 'ticket_assigns.ticket_id')
+                                    ->where('ticket_assigns.user_id', $assignId);
+                })
+                ->when($areaId, function($query) use ($areaId) {
+                    return $query->where('area_id', $areaId);
+                })
                 ->latest()
                 ->get();
     }

@@ -27,20 +27,31 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function messages() {
-        return $this->hasMany(Message::class);
+    public function assign() {
+        return $this->hasMany(TicketAssign::class);
     }
 
-    public function tickets() {
-        return $this->hasMany(Ticket::class);
+    public function hasRole($role) {
+        if ($this->roles()->where('name', $role)->first()) {
+            return true;
+        }
+        return false;
+    }
+
+    public function messages() {
+        return $this->hasMany(Message::class);
     }
 
     public function notifications() {
         return $this->hasMany(Notification::class);
     }
 
-    public function assign() {
-        return $this->hasMany(TicketAssign::class);
+    public function tickets() {
+        return $this->hasMany(Ticket::class);
+    }
+
+    public function roles() {
+        return $this->belongsToMany(Role::class)->withTimestamps();
     }
 
     public function send(Message $message) {

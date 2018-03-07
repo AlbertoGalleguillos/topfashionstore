@@ -2,8 +2,7 @@
 
 namespace App;
 
-class TicketAssign extends Model
-{
+class TicketAssign extends Model {
     public function ticket() {
         return $this->belongsTo(Ticket::class);
     }

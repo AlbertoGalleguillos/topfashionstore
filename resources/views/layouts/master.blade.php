@@ -67,8 +67,7 @@
 			</a>
 		</li>
 		<!-- End user info -->
-		{{-- // TODO: Refactor this with Roles and Permission --}}
-		@if (in_array(auth()->id(), [1,2]))
+		@if (auth()->user()->hasRole('manager'))
 			<li> 
 				<a class="pmd-ripple-effect" href="/dashboard">	
 					<i class="media-left media-middle material-icons">dashboard</i>
@@ -88,8 +87,7 @@
                 <span class="media-body">Requerimientos</span>
             </a> 
         </li>
-		{{-- // TODO: Refactor this with Roles and Permission --}}
-		@if (in_array(auth()->id(), [1,2]))
+		@if (auth()->user()->hasRole('ticketAdmin') || auth()->user()->hasRole('ticketAssign'))
 			<li> 
 				<a class="pmd-ripple-effect" href="/tickets/admin">
 					<i class="media-left media-middle material-icons">build</i>
@@ -106,8 +104,7 @@
 				@endif
 			</a> 
 		</li>
-		{{-- // TODO: Refactor this with Roles and Permission --}}
-		@if (in_array(auth()->id(), [1]))
+		@if (auth()->user()->hasRole('superAdmin'))
 			<li> 
 				<a class="pmd-ripple-effect" href="/admin">
 					<i class="media-left media-middle material-icons">settings</i>
