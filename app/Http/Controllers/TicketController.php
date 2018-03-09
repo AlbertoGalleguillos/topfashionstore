@@ -14,6 +14,7 @@ use App\TicketComment;
 use App\TicketHistory;
 use App\TicketStatus;
 use App\User;
+use App\Mail\newTicket;
 
 class TicketController extends Controller {
 
@@ -67,7 +68,7 @@ class TicketController extends Controller {
         $bosses = User::where('area_id', 3)->get();
         foreach ($bosses as $boss) {
             if ($boss->hasRole('ticketAdmin')) {
-                Mail::to($boss->email)->queue(new App\Mail\newTicket);
+                Mail::to($boss->email)->queue(new newTicket);
             }
         }
         
