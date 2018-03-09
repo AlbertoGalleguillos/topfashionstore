@@ -15,6 +15,7 @@ use App\TicketHistory;
 use App\TicketStatus;
 use App\User;
 use App\Mail\newTicket;
+use Mail;
 
 class TicketController extends Controller {
 
