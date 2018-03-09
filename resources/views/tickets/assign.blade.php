@@ -25,36 +25,6 @@
 									<li class="tab col s4"><a class="no-float" href="#detained">Detenidos</a></li>
 									<li class="tab col s4"><a class="no-float" href="#finished">Terminados</a></li>
 								</ul>
-								<div id="detained" class="s12">
-									<table class="highlight">
-										<thead>
-											<tr>
-												<th>N°</th>
-												<th>Fecha</th>
-												<th>Descripción</th>
-												<th>Avance</th>
-												<th>Estado</th>
-												<th>Acciones</th>
-											</tr>
-										</thead>
-										<tbody>
-											@forelse($ticketsDetained as $ticket)
-												<tr>
-													<td>{{ $ticket->id }}</td>
-													<td>{{ $ticket->created_at->format('d-m-Y') }}</td>
-													<td>{{ $ticket->body }}</td>
-													<td>{{ $ticket->progress }}%</td>
-													<td>{{ $ticket->currentStatus() }}</td>
-													<td class="center-align"><a href="/tickets/edit/{{ $ticket->id }}"><i class="material-icons">edit</i></a></td>
-												</tr>
-											@empty
-												<tr>
-													<td colspan=5 class="center-align">{{ $messageDefault }}</td>
-												</tr>
-											@endforelse
-										</tbody>
-									</table>
-								</div>								
 								<div id="in-progress" class="s12">
 									<table class="highlight">
 										<thead>
@@ -85,6 +55,36 @@
 										</tbody>
 									</table>
 								</div>
+								<div id="detained" class="s12">
+									<table class="highlight">
+										<thead>
+											<tr>
+												<th>N°</th>
+												<th>Fecha</th>
+												<th>Descripción</th>
+												<th>Avance</th>
+												<th>Estado</th>
+												<th>Acciones</th>
+											</tr>
+										</thead>
+										<tbody>
+											@forelse($ticketsDetained as $ticket)
+												<tr>
+													<td>{{ $ticket->id }}</td>
+													<td>{{ $ticket->created_at->format('d-m-Y') }}</td>
+													<td>{{ $ticket->body }}</td>
+													<td>{{ $ticket->progress }}%</td>
+													<td>{{ $ticket->currentStatus() }}</td>
+													<td class="center-align"><a href="/tickets/edit/{{ $ticket->id }}"><i class="material-icons">edit</i></a></td>
+												</tr>
+											@empty
+												<tr>
+													<td colspan=5 class="center-align">{{ $messageDefault }}</td>
+												</tr>
+											@endforelse
+										</tbody>
+									</table>
+								</div>								
 								<div id="finished" class="s12">
 									<table class="highlight">
 										<thead>
@@ -105,7 +105,7 @@
 													<td>{{ $ticket->body }}</td>
 													<td>{{ $ticket->progress }}%</td>
 													<td>{{ $ticket->currentStatus() }}</td>
-													<td class="center-align"><a href="/tickets/edit/{{ $ticket->id }}"><i class="material-icons">edit</i></a></td>
+													<td class="center-align"><a href="/tickets/{{ $ticket->id }}"><i class="material-icons">visibility</i></a></td>
 												</tr>
 											@empty
 												<tr>

@@ -19,6 +19,8 @@ class DashboardController extends Controller
     //TODO Refactor this controller (function daySales(period) and zoneSales(zoneId) )
     public function index() {
 
+		if (!auth()->user()->hasRole('manager')) return redirect('/401');
+
         $charts   = [];
         $today = Carbon::now()->format('Y-m-d');
         $daySales = $this->getDaySales($today); 

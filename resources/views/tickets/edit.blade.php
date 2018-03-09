@@ -45,20 +45,23 @@
 											<p>Estado : {{ $ticket->currentStatus() }}</p>
 										</div>
 										<div class="col s4 center-align">
+											@if (auth()->user()->hasRole('ticketAdmin')) 
 											<select name="area" class="browser-default center-align" required>
 													<option value="" disabled>Área</option>
 													@foreach($areas as $area)
-														<option value="{{ $area->id }}"
-														@if ($area->id == $ticket->area->id) selected
-														@endif>{{ $area->name }} </option>
+														<option value="{{ $area->id }}" @if ($area->id == $ticket->area->id) selected @endif>
+															{{ $area->name }} 
+														</option>
 													@endforeach
 											</select>
+											@else
+												Área: {{ $ticket->area->name }}
+											@endif
 										</div>
 										<div class="col s4">
 											<select name="progress" class="browser-default center-align" required>	
-												<option value="0" selected>0%</option>
-												@for ($i = 10; $i <= 100; $i+=10)
-													<option value="{{ $i }}">{{ $i }}%</option>
+												@for ($i = 0; $i <= 100; $i+=10)
+													<option value="{{ $i }}" @if ($i == $ticket->progress) selected @endif>{{ $i }}%</option>	
 												@endfor
 											</select>
 										</div>
@@ -76,6 +79,7 @@
 											<label for="comment">Comentario</label>
 										</div>
 									</div>
+									@if (auth()->user()->hasRole('ticketAdmin')) 
 									<div class="row">	
 										<div class="input-field col s12">
 											<div id="app">
@@ -83,10 +87,11 @@
 											</div>
 										</div>
 									</div>
-									@if(!$ticket->attachments->isEmpty())
+									@endif
+									@if (!$ticket->attachments->isEmpty())
 										<hr>Archivo(s) Adjunto(s) : 
 										@foreach($ticket->attachments as $attachment)
-											<a href="/{{ $attachment->filepath }}" target="_blank">{{ $attachment->filename }}</a>
+											<a href="/{{ $attachment->filepath }}" target="_blank">{{ $attachment->filename }}</a><br>
 										@endforeach
 									@endif
 									<div class="center-align">

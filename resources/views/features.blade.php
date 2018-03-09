@@ -32,32 +32,32 @@
 						</tr>
 						<tr>
 							<td class="center">3</td>
-							<td>Módulo de Requerimientos (Tickets) - En progreso</td>
+							<td><s>Módulo de Requerimientos (Tickets) - En progreso</s></td>
 							<td class="center">5-10</td>
 						</tr>
 						<tr>
 							<td class="center"d>4</td>
-							<td>Módulo de Notificaciones</td>
+							<td><s>Módulo de Notificaciones</s></td>
 							<td class="center">2-5</td>
 						</tr>
 						<tr>
 							<td class="center">5</td>
-							<td>Pantalla Cambio de clave y foto Usuario</td>
+							<td><s>Pantalla Cambio de clave y foto Usuario</s></td>
 							<td class="center">2</td>
 						</tr>
 						<tr>
 							<td class="center">6</td>
-							<td>Página de Inicio</td>
+							<td><s>Página de Inicio</s></td>
 							<td class="center">1</td>
 						</tr>
 						<tr>
 							<td class="center">7</td>
-							<td>Roles y Perfiles</td>
+							<td><s>Roles y Perfiles</s></td>
 							<td class="center">5</td>
 						</tr>
 						<tr>
 							<td class="center">8</td>
-							<td>Módulo de Creación de Usuarios</td>
+							<td><s>Módulo de Creación de Usuarios</s></td>
 							<td class="center">1</td>
 						</tr>
 						<tr>

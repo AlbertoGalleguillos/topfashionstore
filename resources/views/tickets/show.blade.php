@@ -103,6 +103,7 @@
 										@endif
 									</tbody>
 								</table>
+								@if ($ticket->progress!=100)
                                 <form action="/tickets/comment" method="POST">
                                     {{ csrf_field() }}
                                     <input type="hidden" value="{{ $ticket->id }}" name="ticket_id">
@@ -116,6 +117,7 @@
 										</button>
 									</div>
                                 </form>
+								@endif
 							</div>
 						</div>
 					</div>

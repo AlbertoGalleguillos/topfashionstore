@@ -8,7 +8,7 @@
 			<!-- Notifications -->
             <div class="dropdown notification icons pmd-dropdown">
 			
-				<a href="/messages/create" title="Notification" class="pmd-ripple-effect">
+				<a href="/messages/create" title="Notification" class="	-ripple-effect">
 					{{--<div data-badge="3" class="material-icons md-light pmd-sm pmd-badge  pmd-badge-overlap">notifications_none</div>--}}
 					<i class="material-icons white-text">edit</i>
 				</a>

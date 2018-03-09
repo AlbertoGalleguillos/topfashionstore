@@ -63,6 +63,14 @@ class TicketController extends Controller {
             }
         }
 
+        // Mail To Boss of Area
+        $bosses = App\User::where('area_id', 3)->get();
+        foreach ($bosses as $boss) {
+            if ($boss->hasRole('ticketAdmin')) {
+                Mail::to($boss->email)->queue(new App\Mail\newTicket);
+            }
+        }
+        
         return redirect('/tickets');
     }
 
@@ -86,21 +94,25 @@ class TicketController extends Controller {
     }
 
     public function admin() {
-        $areaId = auth()->user()->area_id;
-        $ticketsInbox = Ticket::byStatus(1, null, $areaId); // En Espera
-        $ticketsDetained = Ticket::byStatus(2, null, $areaId); // Detenido
-        $ticketsInProgress = Ticket::byStatus(3, null, $areaId); // En Progreso
-        $ticketsFinished = Ticket::byStatus(4, null, $areaId); // Terminado
-        $messageDefault = Constant::TICKET_ADMIN_DEFAULT;
-        return view('tickets.admin', compact('ticketsInbox','ticketsDetained','ticketsInProgress','ticketsFinished','messageDefault'));
-    }
 
-    public function assign() {
-        $ticketsDetained = Ticket::byStatus(2, auth()->id()); // Detenido
-        $ticketsInProgress = Ticket::byStatus(3, auth()->id()); // En Progreso
-        $ticketsFinished = Ticket::byStatus(4, auth()->id()); // Terminado
-        $messageDefault = Constant::TICKET_ADMIN_DEFAULT;
-        return view('tickets.assign', compact('ticketsInbox','ticketsDetained','ticketsInProgress','ticketsFinished','messageDefault'));
+        if (auth()->user()->hasRole('ticketAdmin')) {
+            // By Area
+            $areaId = auth()->user()->area_id;
+            $ticketsInbox = Ticket::byStatus(1, null, $areaId); // En Espera
+            $ticketsDetained = Ticket::byStatus(2, null, $areaId); // Detenido
+            $ticketsInProgress = Ticket::byStatus(3, null, $areaId); // En Progreso
+            $ticketsFinished = Ticket::byStatus(4, null, $areaId); // Terminado
+            $messageDefault = Constant::TICKET_ADMIN_DEFAULT;
+            return view('tickets.admin', compact('ticketsInbox','ticketsDetained','ticketsInProgress','ticketsFinished','messageDefault'));
+
+        } elseif (auth()->user()->hasRole('ticketAssign')) {
+            // By User
+            $ticketsDetained = Ticket::byStatus(2, auth()->id()); // Detenido
+            $ticketsInProgress = Ticket::byStatus(3, auth()->id()); // En Progreso
+            $ticketsFinished = Ticket::byStatus(4, auth()->id()); // Terminado
+            $messageDefault = Constant::TICKET_ADMIN_DEFAULT;
+            return view('tickets.assign', compact('ticketsInbox','ticketsDetained','ticketsInProgress','ticketsFinished','messageDefault'));
+        }
     }
 
     public function edit(Ticket $ticket) {

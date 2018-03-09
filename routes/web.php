@@ -32,9 +32,8 @@ Route::get('/messages/{message}', 'MessagesController@show');
 Route::post('/messages', 'MessagesController@store');
 Route::delete('/messages/delete', 'MessagesController@delete');
 
-Route::get('/tickets', 'TicketController@index');
+Route::get('/tickets', 'TicketController@index')->name('tickets');
 Route::get('/tickets/admin', 'TicketController@admin');
-Route::get('/tickets/assign', 'TicketController@assign');
 Route::get('/tickets/edit/{ticket}', 'TicketController@edit');
 Route::get('/tickets/create', 'TicketController@create');
 Route::get('/tickets/{ticket}', 'TicketController@show');
@@ -58,3 +57,7 @@ Route::get('/lists/{list}/edit', 'ListsController@edit');
 Route::post('/lists', 'ListsController@store');
 Route::post('/lists/{list}/addUser', 'ListsController@addUser');
 Route::delete('/lists/removeUser/{listUser}', 'ListsController@destroy');
+
+Route::get('/401', function () {
+    return view('layouts.401');
+});
