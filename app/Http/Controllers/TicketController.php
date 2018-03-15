@@ -69,7 +69,7 @@ class TicketController extends Controller {
         $bosses = User::where('area_id', $ticket->area_id)->get();
         foreach ($bosses as $boss) {
             if ($boss->hasRole('ticketAdmin')) {
-                Mail::to($boss->email)->queue(new newTicket);
+                Mail::to($boss->email)->queue(new newTicket($ticket->id, '/tickets/edit/'.$ticket->id));
             }
         }
         

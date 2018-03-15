@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'uid', 'password',
+        'uid', 'name', 'email', 'store_id', 'area_id', 'password'
     ];
 
     /**
@@ -29,6 +29,10 @@ class User extends Authenticatable
 
     public function assign() {
         return $this->hasMany(TicketAssign::class);
+    }
+
+    public function area() {
+        return $this->belongsTo(Area::class);
     }
 
     public function hasRole($role) {
@@ -56,6 +60,10 @@ class User extends Authenticatable
 
     public function send(Message $message) {
         $this->messages()->save($message);
+    }
+
+    public function store() {
+        return $this->belongsTo(Store::class);
     }
 
     public function unread() {

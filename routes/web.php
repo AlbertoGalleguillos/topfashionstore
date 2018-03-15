@@ -58,6 +58,12 @@ Route::post('/lists', 'ListsController@store');
 Route::post('/lists/{list}/addUser', 'ListsController@addUser');
 Route::delete('/lists/removeUser/{listUser}', 'ListsController@destroy');
 
+Route::get('/users', 'UserController@index');
+Route::get('/users/create', 'UserController@create');
+Route::post('/users/create', 'UserController@store');
+Route::get('/users/edit/{user}', 'UserController@edit');
+Route::post('/users/edit/{user}', 'UserController@update');
+
 Route::get('/401', function () {
     return view('layouts.401');
 });

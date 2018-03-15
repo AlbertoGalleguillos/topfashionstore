@@ -21,10 +21,10 @@
             </a>
         </div>
         <div class="col s12 m4">
-            <a href="{{ route('register') }}">
+            <a href="/users">
                 <div class="center promo card-panel"><br>
                     <i class="material-icons">face</i>
-                    <p>Nuevo Usuario</p>
+                    <p>Usuarios</p>
                 </div>
             </a>
         </div>
