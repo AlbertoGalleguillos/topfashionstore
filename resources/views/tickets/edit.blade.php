@@ -27,9 +27,18 @@
 						<div class="mailbox">
 							<div class="card-panel">
 								<form action="/tickets/edit/{{ $ticket->id }}" method="POST">
-                                    {{ csrf_field() }}
-									<div class="row">
+									{{ csrf_field() }}
 									<br>
+									<div class="row">
+										<div class="col s6">
+											Solicitado Por:
+										</div>
+										<div class="col s6">
+											{{ $ticket->user->name }}
+										</div>
+									</div>
+									<hr>
+									<div class="row">
 										<div class="col s6">
 											<p>Descripción : </p>
 										</div>

@@ -22,7 +22,7 @@
         </div>
         <div class="col s12 m4">
             <a href="/users">
-                <div class="center promo card-panel"><br>
+                <div class="center promo card-panel hoverable"><br>
                     <i class="material-icons">face</i>
                     <p>Usuarios</p>
                 </div>

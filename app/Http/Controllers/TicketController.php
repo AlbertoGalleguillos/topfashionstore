@@ -15,6 +15,7 @@ use App\TicketHistory;
 use App\TicketStatus;
 use App\User;
 use App\Mail\newTicket;
+use App\Mail\assignTicket;
 use Mail;
 
 class TicketController extends Controller {
@@ -181,6 +182,10 @@ class TicketController extends Controller {
                 'ticket_id' => $ticket->id,
                 'user_id' => $userAssign->id
             ]);
+            // Mail to user assign
+            //dd($userAssign->email);
+            Mail::to($userAssign->email)->queue(new assignTicket($ticket->id, '/tickets/edit/'.$ticket->id));
+
         }
 
         // Update Area
@@ -190,6 +195,6 @@ class TicketController extends Controller {
             $ticket->save();
         }
 
-        return back();
+        return redirect('/tickets/admin');
     }
 }
