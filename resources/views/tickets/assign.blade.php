@@ -30,6 +30,7 @@
 										<thead>
 											<tr>
 												<th>N°</th>
+												<th>Solicitado Por</th>
 												<th>Fecha</th>
 												<th>Descripción</th>
 												<th>Avance</th>
@@ -41,6 +42,7 @@
 											@forelse($ticketsInProgress as $ticket)
 												<tr>
 													<td>{{ $ticket->id }}</td>
+													<td>{{ $ticket->user->name }}</td>
 													<td>{{ $ticket->created_at->format('d-m-Y') }}</td>
 													<td>{{ $ticket->body }}</td>
 													<td>{{ $ticket->progress }}%</td>
@@ -60,6 +62,7 @@
 										<thead>
 											<tr>
 												<th>N°</th>
+												<th>Solicitado Por</th>
 												<th>Fecha</th>
 												<th>Descripción</th>
 												<th>Avance</th>
@@ -71,6 +74,7 @@
 											@forelse($ticketsDetained as $ticket)
 												<tr>
 													<td>{{ $ticket->id }}</td>
+													<td>{{ $ticket->user->name }}</td>
 													<td>{{ $ticket->created_at->format('d-m-Y') }}</td>
 													<td>{{ $ticket->body }}</td>
 													<td>{{ $ticket->progress }}%</td>
@@ -90,6 +94,7 @@
 										<thead>
 											<tr>
 												<th>N°</th>
+												<th>Solicitado Por</th>
 												<th>Fecha</th>
 												<th>Descripción</th>
 												<th>Avance</th>
@@ -101,6 +106,7 @@
 											@forelse($ticketsFinished as $ticket)
 												<tr>
 													<td>{{ $ticket->id }}</td>
+													<td>{{ $ticket->user->name }}</td>
 													<td>{{ $ticket->created_at->format('d-m-Y') }}</td>
 													<td>{{ $ticket->body }}</td>
 													<td>{{ $ticket->progress }}%</td>
