@@ -28,7 +28,7 @@ class Ticket extends Model {
     }
 
     public static function byStatus($statusId, $assignId = null, $areaId = null) {
-        return static::select('tickets.id', 'body', 'progress', 'tickets.created_at','user_id')
+        return static::select('tickets.id', 'body', 'progress', 'tickets.created_at','tickets.user_id')
                 ->join('ticket_histories', 'tickets.id', '=', 'ticket_histories.ticket_id')
                 ->whereRaw('ticket_histories.updated_at = (select max(updated_at) from ticket_histories c
                         where tickets.id = c.ticket_id) and status_id = ?' , $statusId)
