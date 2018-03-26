@@ -190,7 +190,7 @@ class TicketController extends Controller {
 
         // Update Area
         $area = request('area');
-        if ($area != $ticket->area_id) {
+        if (isset($area) && $area != $ticket->area_id) {
             $ticket->area = $area;
             $ticket->save();
         }
