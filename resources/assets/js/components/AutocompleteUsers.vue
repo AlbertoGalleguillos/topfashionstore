@@ -25,7 +25,7 @@
             if (!this.users.includes(',')) {
                 this.users = message + ',';
             } else {
-                this.users = this.users.substr(0,this.users.lastIndexOf(',')+2) + message + ',';
+                this.users = this.users.substr(0,this.users.lastIndexOf(',')+1) + ' ' + message + ',';
             }
             this.results = [];
         },

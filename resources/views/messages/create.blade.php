@@ -6,7 +6,7 @@
 
     <!--breadcrum start-->
     <ol class="breadcrumb text-left">
-        <li><a href="/inbox">Mensajes</a></li>
+        <li><a href="/messages/inbox">Mensajes</a></li>
         <li class="active">Crear nuevo mensaje</li>
     </ol><!--breadcrum end-->
 

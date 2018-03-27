@@ -56,7 +56,8 @@ Route::get('/lists/create', 'ListsController@create');
 Route::get('/lists/{list}/edit', 'ListsController@edit');
 Route::post('/lists', 'ListsController@store');
 Route::post('/lists/{list}/addUser', 'ListsController@addUser');
-Route::delete('/lists/removeUser/{listUser}', 'ListsController@destroy');
+Route::delete('/lists/removeUser/{listUser}', 'ListsController@removeUser');
+Route::delete('/lists/destroy/{list}', 'ListsController@destroy');
 
 Route::get('/users', 'UserController@index');
 Route::get('/users/create', 'UserController@create');

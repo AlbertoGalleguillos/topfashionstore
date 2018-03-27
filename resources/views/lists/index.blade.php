@@ -25,9 +25,13 @@
                             </a>
                         </td>
                         <td width="3%" class="center-align"> 
-                            <button class="btn-flat" type="submit" name="action">
-                                <i class="material-icons">delete</i>
-                            </button>
+                            <form method="POST" action="/lists/destroy/{{ $list->id }}">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <button class="btn-flat" type="submit" name="action" formaction="/lists/destroy/{{ $list->id }}">
+                                    <i class="material-icons">delete</i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
@@ -39,5 +43,7 @@
 
 <div class="fixed-action-btn">
 		<a href="/lists/create" class="btn-floating btn-large waves-effect waves-light blue lighten-1"><i class="material-icons">create</i></a>
-	</div> 
+</div> 
+
+@include('layouts.errors')    
 @endsection
