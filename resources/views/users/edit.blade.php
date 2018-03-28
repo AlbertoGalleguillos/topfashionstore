@@ -43,7 +43,7 @@
 									<div class="row">
 										<div class="col s6">
 											<select name="area" class="browser-default center-align">
-													<option value="" disabled>Área</option>
+													<option value="" disabled selected>Área</option>
 													@foreach($areas as $area)
 														<option value="{{ $area->id }}" @if ($area->id == $user->area_id) selected @endif>
 															{{ $area->name }} 
