@@ -33,6 +33,5 @@ class assignTicket extends Mailable
     {
         return $this->markdown('mail.assignTicket')
                     ->subject('El Requerimiento - N° ' . $this->ticketId. ' ha sido asignado a usted');
-                    //->action('Ver Requerimiento', url(config('app.url').route('tickets')));
     }
 }

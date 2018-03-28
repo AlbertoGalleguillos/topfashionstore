@@ -11,6 +11,8 @@ use App\User;
 use App\Lists;
 use App\Notification;
 use JavaScript;
+use App\Mail\newMessage;
+use Mail;
 
 use Illuminate\Support\Facades\DB;
 
@@ -107,12 +109,19 @@ class MessagesController extends Controller
                         if ($model) {
                             $type_id = 'U'; // User
                             newNotification($model->id, $message->id, auth()->user()->name);
+                            //dd($model->email);
+                            if ($model->email) {
+                                Mail::to($model->email)->queue(new newMessage($message->id, auth()->user()->name, '/messages/'.$message->id));
+                            }
                         } else {
                             $type_id = 'L'; // List
                             $model = Lists::where('name', trim($recipient))->first();
                             //dd($model->listUsers);
                             foreach($model->listUsers as $list) {
                                 newNotification($list->user_id, $message->id, auth()->user()->name);
+                                if ($list->user->email) {
+                                    Mail::to($list->user->email)->queue(new newMessage($message->id, auth()->user()->name, '/messages/'.$message->id));
+                                }
                             }
                         }
                         MessagesRecipients::create([
@@ -120,6 +129,7 @@ class MessagesController extends Controller
                             'to_id' => $model->id,
                             'type_id' => $type_id
                         ]);
+                        
                     }
                 }
             }

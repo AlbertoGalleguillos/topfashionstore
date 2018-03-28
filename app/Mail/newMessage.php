@@ -7,20 +7,22 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class newTicket extends Mailable
+class newMessage extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $ticketId;
+    public $messageId;
+    public $sender;
     public $url;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($ticketId, $url)
+    public function __construct($messageId, $sender, $url)
     {
-        $this->ticketId = $ticketId;
+        $this->messageId = $messageId;
+        $this->sender = $sender;
         $this->url = url(config('app.url').$url);
     }
 
@@ -31,7 +33,7 @@ class newTicket extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.ticket')
-                    ->subject('Nuevo Requerimiento - N° ' . $this->ticketId);
+        return $this->markdown('mail.message')
+                    ->subject('Nuevo Mensaje de ' . $this->sender);
     }
 }

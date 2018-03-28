@@ -126,6 +126,10 @@ class TicketController extends Controller {
         //dd(request()->all());
         // Finish Ticket
         $progress = request('progress');
+        if (isset($progress)) {
+            $ticket->progress = $progress;
+            $ticket->save();
+        }
         $solution = request('solution');
         if (($progress == 100) && (isset($solution))) {
             TicketHistory::create([
